@@ -3,6 +3,7 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+from uuid import uuid4
 
 from libs import piece
 from libs.game import GameSession
@@ -11,6 +12,7 @@ from libs.model_config import load_model_config
 
 
 BENCHMARK_DIR = Path.cwd() / "benchmarks"
+REASONING_LOG_DIR = Path("/tmp/gomokubench")
 
 
 @dataclass
@@ -35,12 +37,19 @@ class BenchmarkRunner:
         verbose=False,
         stream=None,
         debug_http=False,
+        run_id=None,
     ):
         self.model_config = model_config
         self.rounds = rounds
         self.size = 19
         self.ai_level = ai_level
-        self.llm_player = llm_player or LLMPlayer(model_config, debug_http=debug_http)
+        self.run_id = run_id or uuid4().hex
+        self.reasoning_log_path = REASONING_LOG_DIR / f"{self.run_id}.log"
+        self.llm_player = llm_player or LLMPlayer(
+            model_config,
+            debug_http=debug_http,
+            reasoning_log_path=self.reasoning_log_path,
+        )
         self.progress_callback = progress_callback
         self.verbose = verbose
         self.stream = stream or sys.stdout
@@ -77,6 +86,8 @@ class BenchmarkRunner:
             "model_name": self.model_config.display_name,
             "provider": self.model_config.provider_name,
             "generated_at": datetime.now(timezone.utc).isoformat(),
+            "run_id": self.run_id,
+            "reasoning_log": str(self.reasoning_log_path),
             "rounds": self.rounds,
             "board_size": self.size,
             "ai_level": self.ai_level,
@@ -221,7 +232,7 @@ class BenchmarkRunner:
         }
 
 
-def run_benchmark(args, progress_callback=None):
+def run_benchmark(args, progress_callback=None, start_callback=None):
     if args.rounds <= 0:
         raise ValueError("Rounds must be a positive integer.")
 
@@ -237,6 +248,8 @@ def run_benchmark(args, progress_callback=None):
         verbose=getattr(args, "verbose", False),
         debug_http=getattr(args, "debug_http", False),
     )
+    if start_callback:
+        start_callback(runner)
     report = runner.run()
     output_path = save_report(model_config.config_name, report)
     return output_path, report

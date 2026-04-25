@@ -1,0 +1,131 @@
+{
+  "model": "nemotron-3-super",
+  "model_name": "Nemotron 3 Super",
+  "provider": "Ollama (spark)",
+  "generated_at": "2026-04-25T23:48:07.269418+00:00",
+  "run_id": "519a277a2c3a443298d26c7e6bcc07d9",
+  "reasoning_log": "/tmp/gomokubench/519a277a2c3a443298d26c7e6bcc07d9.log",
+  "rounds": 1,
+  "board_size": 19,
+  "ai_level": "standard",
+  "summary": {
+    "llm_wins": 0,
+    "ai_wins": 1,
+    "draws": 0,
+    "ai_first_rounds": 0,
+    "llm_first_rounds": 1
+  },
+  "games": [
+    {
+      "round": 1,
+      "ai_first": false,
+      "llm_color": "black",
+      "ai_color": "white",
+      "outcome": "ai_win",
+      "winner": "white",
+      "termination_reason": "five_in_a_row",
+      "moves": [
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,10",
+          "response": "10,10"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "11,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "12,10",
+          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"12,10, 10,12, 10,9, 11,9, 9,10, 11,10, 9,11,"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "11,10"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "11,9",
+          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,9, 10,12, 12,12, 10,9, 12,9, 9,11, 10,11,"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "9,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,8",
+          "response": "10,8"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "9,7"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "13,11",
+          "response": "13,11"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "14,12"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,9",
+          "response": "10,9"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "10,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,6",
+          "response": "10,6"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "10,7"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "12,9",
+          "response": "12,9"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "8,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "13,9",
+          "response": "13,9"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "12,11"
+        }
+      ],
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  O  O  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  .  X  X  X  X  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  .  X  O  X  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  O  O  O  O  O  X  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+    }
+  ]
+}

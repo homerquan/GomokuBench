@@ -136,6 +136,9 @@ def run_benchmark_command(args):
         output_path, report = run_benchmark(
             args,
             progress_callback=lambda completed, total: progress.update(completed),
+            start_callback=lambda runner: print(
+                f"LLM reasoning process log in: {runner.reasoning_log_path}"
+            ),
         )
     except BenchmarkLLMCallError as error:
         progress.newline()
