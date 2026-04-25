@@ -100,6 +100,9 @@ class LLMPlayer:
                         "with a legal move in x,y format using 1-based coordinates, for example "
                         "10,10. Valid examples: 10,10 or 3,14. Invalid examples: (10,10), x=10 y=10, "
                         "row 10 column 10, or any sentence before the move. Do not put any text before the move."
+                        " You must always make a legal move while the game is still active. Do not resign, pass, "
+                        "stop, or only explain that the position is already won or lost; even if the result looks "
+                        "forced, choose a legal move that lets the game continue to its actual terminal state."
                     ),
                 },
                 {"role": "user", "content": prompt},
@@ -171,6 +174,9 @@ def build_move_prompt(game, llm_color, attempt, last_error):
         f"Board size: {game.size}x{game.size}.",
         "Coordinate format: x,y where x is the column and y is the row, both 1-based.",
         "Goal: choose the strongest legal move for your side right now.",
+        "The game is not over yet. You must make a legal move to finish the game on the board.",
+        "Never resign, pass, stop playing, or answer only that the game is already won or lost.",
+        "Even if you believe a win or loss is forced, still output one legal move and continue the game.",
         "Important response rule: the first characters of your reply must be exactly one legal move such as 10,10.",
         "Output format rule: write only digits, then a comma, then digits at the start of your reply.",
         "Valid examples: 10,10 and 3,14.",
