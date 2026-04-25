@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: gomokubench
-Version: 0.1.2
+Version: 0.1.3
 Summary: A reproducible search-vs-LLM Gomoku benchmark for AI labs, model builders, and researchers.
 Author: Homer Quan
 License-Expression: MIT
