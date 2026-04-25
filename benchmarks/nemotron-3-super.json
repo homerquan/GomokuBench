@@ -2,9 +2,9 @@
   "model": "nemotron-3-super",
   "model_name": "Nemotron 3 Super",
   "provider": "Ollama (spark)",
-  "generated_at": "2026-04-25T23:48:07.269418+00:00",
-  "run_id": "519a277a2c3a443298d26c7e6bcc07d9",
-  "reasoning_log": "/tmp/gomokubench/519a277a2c3a443298d26c7e6bcc07d9.log",
+  "generated_at": "2026-04-25T23:53:49.594524+00:00",
+  "run_id": "1ced4a61a3a9449b98b231417095d137",
+  "reasoning_log": "/tmp/gomokubench/1ced4a61a3a9449b98b231417095d137.log",
   "rounds": 1,
   "board_size": 19,
   "ai_level": "standard",
@@ -29,7 +29,7 @@
           "player": "llm",
           "color": "black",
           "move": "10,10",
-          "response": "10,10"
+          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The board is empty, any coordinate is legal. The instruction says: If unsure, choose fallback 10,10. So we output \"10,10\". Ensure no extra spaces, newline, etc. Just that."
         },
         {
           "player": "ai",
@@ -62,7 +62,7 @@
           "player": "llm",
           "color": "black",
           "move": "10,8",
-          "response": "10,8"
+          "response": "We need to output exactly one coordinate from LEGAL_MOVES list. The list: \"10,8, 13,11, 12,8, 10,11, 12,11, 9,9, 10,9,"
         },
         {
           "player": "ai",
