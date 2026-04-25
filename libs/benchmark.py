@@ -29,6 +29,7 @@ class BenchmarkRunner:
         self,
         model_config,
         rounds,
+        ai_level="standard",
         llm_player=None,
         progress_callback=None,
         verbose=False,
@@ -38,7 +39,7 @@ class BenchmarkRunner:
         self.model_config = model_config
         self.rounds = rounds
         self.size = 19
-        self.depth = 2
+        self.ai_level = ai_level
         self.llm_player = llm_player or LLMPlayer(model_config, debug_http=debug_http)
         self.progress_callback = progress_callback
         self.verbose = verbose
@@ -78,7 +79,7 @@ class BenchmarkRunner:
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "rounds": self.rounds,
             "board_size": self.size,
-            "ai_depth": self.depth,
+            "ai_level": self.ai_level,
             "summary": {
                 "llm_wins": summary.llm_wins,
                 "ai_wins": summary.ai_wins,
@@ -107,7 +108,7 @@ class BenchmarkRunner:
 
     def _play_round(self, round_number, ai_first):
         llm_color = piece.WHITE if ai_first else piece.BLACK
-        session = GameSession(size=self.size, depth=self.depth, human_color=llm_color)
+        session = GameSession(size=self.size, human_color=llm_color, ai_level=self.ai_level)
         moves = []
         termination_reason = None
 
@@ -115,7 +116,8 @@ class BenchmarkRunner:
             (
                 f"Round {round_number}/{self.rounds} started. "
                 f"AI is {color_name(session.ai_color)}, LLM is {color_name(llm_color)}. "
-                f"{'AI' if ai_first else 'LLM'} moves first."
+                f"{'AI' if ai_first else 'LLM'} moves first. "
+                f"AI level: {session.ai_level}."
             ),
             board=session.state,
         )
@@ -227,6 +229,7 @@ def run_benchmark(args, progress_callback=None):
     runner = BenchmarkRunner(
         model_config=model_config,
         rounds=args.rounds,
+        ai_level=getattr(args, "ai_level", "standard"),
         progress_callback=progress_callback,
         verbose=getattr(args, "verbose", False),
         debug_http=getattr(args, "debug_http", False),

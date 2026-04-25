@@ -4,7 +4,37 @@ from libs import piece
 from libs.eval_fn import evaluation_state
 
 
-def get_best_move(state, depth, is_max_state):
+AI_LEVELS = {
+    "easy": {
+        "depth": 1,
+        "candidate_count": 4,
+        "random_top_n": 2,
+    },
+    "standard": {
+        "depth": 2,
+        "candidate_count": 10,
+        "random_top_n": 1,
+    },
+    "hard": {
+        "depth": 3,
+        "candidate_count": 12,
+        "random_top_n": 1,
+    },
+}
+
+
+def resolve_ai_settings(level="standard", depth=None):
+    if level not in AI_LEVELS:
+        raise ValueError(f"Unknown AI level: {level}")
+
+    settings = dict(AI_LEVELS[level])
+    if depth is not None:
+        settings["depth"] = depth
+    settings["level"] = level
+    return settings
+
+
+def get_best_move(state, depth, is_max_state, candidate_count=10, random_top_n=1):
     values = state.values
     best_value = -9999 if is_max_state else 9999
     best_move = (-1, -1)
@@ -15,7 +45,12 @@ def get_best_move(state, depth, is_max_state):
     if pieces == 1:
         return second_move(state)
 
-    top_moves = get_top_moves(state, 10, is_max_state)
+    top_moves = get_top_moves(state, candidate_count, is_max_state)
+
+    if random_top_n > 1 and len(top_moves) > 1:
+        top_limit = min(random_top_n, len(top_moves))
+        random_index = int(np.random.randint(0, top_limit))
+        return top_moves[random_index]
 
     for move, _ in top_moves:
         move = tuple(int(value) for value in move)

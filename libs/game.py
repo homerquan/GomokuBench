@@ -1,12 +1,14 @@
 from libs import piece
-from libs.ai import get_best_move
+from libs.ai import get_best_move, resolve_ai_settings
 from libs.board import BoardState
 
 
 class GameSession:
-    def __init__(self, size=19, depth=2, human_color=piece.BLACK):
+    def __init__(self, size=19, depth=None, human_color=piece.BLACK, ai_level="standard"):
         self.size = size
-        self.depth = depth
+        self.ai_settings = resolve_ai_settings(level=ai_level, depth=depth)
+        self.depth = self.ai_settings["depth"]
+        self.ai_level = self.ai_settings["level"]
         self.human_color = human_color
         self.ai_color = -human_color
         self.is_max_state = self.ai_color == piece.BLACK
@@ -40,7 +42,13 @@ class GameSession:
         if not self.ai_to_move():
             return None
 
-        move, _ = get_best_move(self.state, self.depth, self.is_max_state)
+        move, _ = get_best_move(
+            self.state,
+            self.depth,
+            self.is_max_state,
+            candidate_count=self.ai_settings["candidate_count"],
+            random_top_n=self.ai_settings["random_top_n"],
+        )
         move = tuple(int(value) for value in move)
         self.state = self.state.next(move)
         return move

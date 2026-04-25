@@ -1,6 +1,7 @@
 import argparse
 
 from libs import piece
+from libs.ai import AI_LEVELS
 from libs.benchmark import BenchmarkLLMCallError, run_benchmark
 from libs.game import GameSession
 from libs.progress import BenchmarkProgress
@@ -35,6 +36,12 @@ def build_parser():
         action="store_true",
         help="Let the AI make the first move.",
     )
+    play_parser.add_argument(
+        "--ai-level",
+        choices=tuple(AI_LEVELS.keys()),
+        default="standard",
+        help="AI strength level. Default: standard",
+    )
 
     benchmark_parser = subparsers.add_parser("benchmark", help="Benchmark an LLM against the AI.")
     benchmark_parser.add_argument("--model", required=True, help="Model config name in the models folder.")
@@ -56,6 +63,12 @@ def build_parser():
         action="store_true",
         help="Print HTTP error details from the LLM provider when a benchmark request fails.",
     )
+    benchmark_parser.add_argument(
+        "--ai-level",
+        choices=tuple(AI_LEVELS.keys()),
+        default="standard",
+        help="AI strength level. Default: standard",
+    )
     return parser
 
 
@@ -70,10 +83,11 @@ def run_play(args):
         human_color = piece.WHITE
     else:
         human_color = piece.BLACK
-    game = GameSession(human_color=human_color)
+    game = GameSession(human_color=human_color, ai_level=args.ai_level)
 
     print(f"You are {color_name(game.human_color)} ({piece.SYMBOLS[game.human_color]}).")
     print(f"AI is {color_name(game.ai_color)} ({piece.SYMBOLS[game.ai_color]}).")
+    print(f"AI level: {game.ai_level}.")
     print("Enter moves as x,y using 1-based coordinates. Example: 10,10")
     print("Type 'q' to quit.")
 

@@ -1,14 +1,29 @@
 # GomokuBench
 
-GomokuBench is a search-vs-LLM benchmark for AI companies, model builders, and researchers who want a clean, reproducible way to test whether a general-purpose model can outplay a classic board-game engine.
+GomokuBench is a lightweight benchmark for testing frontier LLMs against a search-powered Gomoku engine in a setting that is simple, adversarial, reproducible, and easy to inspect move by move.
 
-Until 2026.4.26, no LLM in this benchmark has beaten the AI powered by search algorithm. If you find one, please share it with us.
+It is built for AI companies, model builders, and researchers who want a fast way to answer a practical question:
 
-Built for rapid model plugging, head-to-head benchmarking, and plain-language inspection of every move. Author: **Homer Quan**. GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench).
+**Can a general-purpose language model consistently beat a classical search algorithm in a fully specified board game?**
+
+Until `2026.4.26`, no LLM in this benchmark has beaten the built-in AlphaBeta search engine. If you find one, please share it with us.
+
+GomokuBench is designed to be easy to plug into model APIs, easy to run from the command line, and easy to audit after the game ends. Every move can be replayed, every prompt is explicit, and every result is saved as structured JSON.
+
+Author: **Homer Quan**  
+GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench)
+
+## Why This Benchmark
+
+- Simple game, hard reasoning: Gomoku has clear rules and no hidden information, so failures are easier to interpret.
+- Search vs LLM: benchmark a deterministic AlphaBeta engine against modern chat models under the same rules.
+- Fast iteration: add a new model with a small JSON config and start benchmarking right away.
+- Useful outputs: save per-game logs, final boards, and aggregate win/loss results for later analysis.
+- Good for demos and research: use it for model evals, prompting experiments, tool-use studies, and public scoreboards.
 
 ## Current Results
 
-As of `2026.4.26`, every tested model is still down `10:0` against the built-in AlphaBeta search engine.
+As of `2026.4.26`, every model listed below is still down `10:0` against the built-in AlphaBeta search engine.
 
 | Model | AlphaBeta (Search) | LLM |
 | --- | ---: | ---: |
@@ -20,16 +35,38 @@ As of `2026.4.26`, every tested model is still down `10:0` against the built-in 
 | `gpt-5-mini` | 10 | 0 |
 | `gemini-3-flash-preview` | 10 | 0 |
 
+## Quick Start
+
+Install from PyPI:
+
+```bash
+pip install gomokubench
+```
+
+Play against the engine:
+
+```bash
+gomoku play
+```
+
+Benchmark an LLM:
+
+```bash
+gomoku benchmark --model nemotron-3-super -r 10
+```
+
+Give the model a better chance with a weaker engine:
+
+```bash
+gomoku benchmark --model nemotron-3-super -r 10 --ai-level easy
+```
+
 ## Requirements
 
 - Python 3
 - `numpy`
 
 ## Install
-
-```bash
-pip install gomokubench
-```
 
 Or install from source:
 
@@ -47,8 +84,15 @@ Optional flags:
 
 - `--player black|white`
 - `--ai-first`
+- `--ai-level easy|standard|hard`
 
-The CLI always uses a `19x19` board and AI search depth `2`.
+The CLI always uses a `19x19` board.
+
+AI levels:
+
+- `easy`: shallower search with a small amount of move randomness
+- `standard`: the default benchmark setting
+- `hard`: deeper search
 
 Moves use `x,y` with 1-based coordinates, for example `10,10`.
 
@@ -58,6 +102,12 @@ Run an LLM against the built-in alpha-beta AI:
 
 ```bash
 gomoku benchmark --model nemotron-3-super -r 10
+```
+
+To give the LLM a better chance, benchmark against a weaker engine:
+
+```bash
+gomoku benchmark --model nemotron-3-super -r 10 --ai-level easy
 ```
 
 To watch the rounds play out in the console while benchmarking:
@@ -72,11 +122,24 @@ What this does:
 - Runs 10 rounds total
 - Uses balanced starts: 5 rounds with the AI moving first and 5 rounds with the LLM moving first
 - Always uses a `19x19` board
-- Always uses AI search depth `2`
+- Uses the selected AI level, defaulting to `standard`
 - `-v` prints each round, move, and board state in the console
 - Saves the benchmark report to `benchmarks/nemotron-3-super.json`
 
 The benchmark report is saved as JSON and includes the summary plus per-game move logs and final boards.
+
+## What Gets Saved
+
+Each benchmark run saves a JSON report in `benchmarks/` with:
+
+- model name and provider
+- board size and AI level
+- total wins, losses, and draws
+- which side moved first in each round
+- full move logs
+- final board states
+
+That makes GomokuBench useful both as a quick CLI demo and as a small research harness for repeatable comparisons across model versions and providers.
 
 ## Adding Models
 
