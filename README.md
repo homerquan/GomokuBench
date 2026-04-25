@@ -2,10 +2,6 @@
 
 GomokuBench is a lightweight benchmark for testing frontier LLMs against a search-powered Gomoku engine in a setting that is simple, adversarial, reproducible, and easy to inspect move by move.
 
-# GomokuBench
-
-GomokuBench is a lightweight benchmark for testing frontier LLMs against a search-powered Gomoku engine in a setting that is simple, adversarial, reproducible, and easy to inspect move by move.
-
 [YouTube Demo](https://youtu.be/QbaC1Qbbno4)
 
 It is built for AI companies, model builders, and researchers who want a fast way to answer a practical question:
