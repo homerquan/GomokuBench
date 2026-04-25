@@ -10,7 +10,7 @@ from libs.llm_player import LLMMoveError, LLMPlayer, LLMRequestError
 from libs.model_config import load_model_config
 
 
-BENCHMARK_DIR = Path(__file__).resolve().parent.parent / "benchmarks"
+BENCHMARK_DIR = Path.cwd() / "benchmarks"
 
 
 @dataclass

@@ -1,12 +1,22 @@
 import json
 import os
+import sys
+import sysconfig
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Optional
 
 
-MODEL_DIR = Path(__file__).resolve().parent.parent / "models"
-ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+PACKAGE_ROOT = Path(__file__).resolve().parent.parent
+MODEL_DIR = PACKAGE_ROOT / "models"
+ENV_PATH = PACKAGE_ROOT / ".env"
+PREFIX_ROOT = Path(sys.prefix)
+DATA_ROOT = Path(sysconfig.get_paths().get("data", sys.prefix)).resolve()
+PREFIX_CANDIDATES = (
+    PREFIX_ROOT,
+    PREFIX_ROOT.resolve(),
+    DATA_ROOT,
+)
 
 
 @dataclass(frozen=True)
@@ -36,28 +46,52 @@ class ModelConfig:
 
 
 def load_dotenv_value(key):
-    try:
-        env_text = ENV_PATH.read_text(encoding="utf-8")
-    except OSError:
-        return None
+    env_candidates = [Path.cwd() / ".env"]
+    env_candidates.extend(prefix_root / ".env" for prefix_root in PREFIX_CANDIDATES)
+    env_candidates.append(ENV_PATH)
 
-    prefix = f"{key}="
-    for raw_line in env_text.splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or not line.startswith(prefix):
+    seen = set()
+    for env_path in env_candidates:
+        env_key = str(env_path)
+        if env_key in seen:
             continue
-        value = line[len(prefix):].strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
-            value = value[1:-1]
-        return value
+        seen.add(env_key)
+        try:
+            env_text = env_path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+
+        prefix = f"{key}="
+        for raw_line in env_text.splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or not line.startswith(prefix):
+                continue
+            value = line[len(prefix):].strip()
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+                value = value[1:-1]
+            return value
 
     return None
 
 
 def load_model_config(model_name):
-    path = MODEL_DIR / f"{model_name}.json"
-    if not path.exists():
-        raise FileNotFoundError(f"Model config not found: {path}")
+    candidate_paths = [Path.cwd() / "models" / f"{model_name}.json"]
+    candidate_paths.extend(
+        prefix_root / "models" / f"{model_name}.json" for prefix_root in PREFIX_CANDIDATES
+    )
+    candidate_paths.append(MODEL_DIR / f"{model_name}.json")
+
+    seen = set()
+    deduped_paths = []
+    for candidate_path in candidate_paths:
+        path_key = str(candidate_path)
+        if path_key in seen:
+            continue
+        seen.add(path_key)
+        deduped_paths.append(candidate_path)
+    path = next((candidate for candidate in deduped_paths if candidate.exists()), None)
+    if path is None:
+        raise FileNotFoundError(f"Model config not found for {model_name} in models/")
 
     with path.open("r", encoding="utf-8") as handle:
         raw_config = json.load(handle)

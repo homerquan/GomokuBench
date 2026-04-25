@@ -1,3 +1,28 @@
+Metadata-Version: 2.4
+Name: gomokubench
+Version: 0.1.0
+Summary: Benchmark frontier LLMs against a search-powered Gomoku engine.
+Author: Homer Quan
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/homerquan/GomokuBench
+Project-URL: Repository, https://github.com/homerquan/GomokuBench
+Keywords: gomoku,benchmark,llm,alpha-beta,minimax,cli,research
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Games/Entertainment :: Board Games
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Dynamic: license-file
+
 # GomokuBench
 
 GomokuBench is a search-vs-LLM benchmark for AI companies, model builders, and researchers who want a clean, reproducible way to test whether a general-purpose model can outplay a classic board-game engine.
@@ -5,20 +30,6 @@ GomokuBench is a search-vs-LLM benchmark for AI companies, model builders, and r
 Until 2026.4.26, no LLM in this benchmark has beaten the AI powered by search algorithm. If you find one, please share it with us.
 
 Built for rapid model plugging, head-to-head benchmarking, and plain-language inspection of every move. Author: **Homer Quan**. GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench).
-
-## Current Results
-
-As of `2026.4.26`, every tested model is still down `10:0` against the built-in AlphaBeta search engine.
-
-| Model | AlphaBeta (Search) | LLM |
-| --- | ---: | ---: |
-| `nemotron-3-super` | 10 | 0 |
-| `gemma4:latest` | 10 | 0 |
-| `deepseek-v4-pro-together` | 10 | 0 |
-| `kimi-k2.6-novita` | 10 | 0 |
-| `gpt-5.5-pro-openrouter` | 10 | 0 |
-| `gpt-5-mini` | 10 | 0 |
-| `gemini-3-flash-preview` | 10 | 0 |
 
 ## Requirements
 

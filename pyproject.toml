@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gomokubench"
+version = "0.1.0"
+description = "Benchmark frontier LLMs against a search-powered Gomoku engine."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "Homer Quan" }
+]
+dependencies = [
+  "numpy"
+]
+keywords = ["gomoku", "benchmark", "llm", "alpha-beta", "minimax", "cli", "research"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Games/Entertainment :: Board Games",
+]
+
+[project.urls]
+Homepage = "https://github.com/homerquan/GomokuBench"
+Repository = "https://github.com/homerquan/GomokuBench"
+
+[project.scripts]
+gomoku = "libs.cli:run_cli"
+
+[tool.setuptools]
+packages = ["libs"]
+include-package-data = false
+
+[tool.setuptools.data-files]
+"models" = [
+  "models/deepseek-v4-pro-together.json",
+  "models/gemini-3-flash-preview.json",
+  "models/gemma4:latest.json",
+  "models/gpt-5-mini.json",
+  "models/gpt-5.5-pro-openrouter.json",
+  "models/kimi-k2.6-novita.json",
+  "models/nemotron-3-super.json",
+]
+"" = ["rule.md"]

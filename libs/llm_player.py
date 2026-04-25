@@ -1,5 +1,7 @@
 import json
 import re
+import sys
+import sysconfig
 from http.client import HTTPException
 from pathlib import Path
 from urllib import error, request
@@ -7,20 +9,36 @@ from urllib import error, request
 
 MOVE_PATTERN = re.compile(r"(\d+)\s*,\s*(\d+)")
 RULE_PATH = Path(__file__).resolve().parent.parent / "rule.md"
+PREFIX_RULE_PATH = Path(sys.prefix) / "rule.md"
+DATA_RULE_PATH = Path(sysconfig.get_paths().get("data", sys.prefix)).resolve() / "rule.md"
 
 
 def load_rule_context():
-    try:
-        rule_text = RULE_PATH.read_text(encoding="utf-8").strip()
-    except OSError:
+    candidate_paths = (
+        Path.cwd() / "rule.md",
+        PREFIX_RULE_PATH,
+        PREFIX_RULE_PATH.resolve(),
+        DATA_RULE_PATH,
+        RULE_PATH,
+    )
+    seen = set()
+    for rule_path in candidate_paths:
+        path_key = str(rule_path)
+        if path_key in seen:
+            continue
+        seen.add(path_key)
+        try:
+            rule_text = rule_path.read_text(encoding="utf-8").strip()
+        except OSError:
+            continue
         return (
-            "Rules: Black is X, White is O, . means empty. Players alternate placing one stone "
-            "on an empty position. Five or more in a row wins. Full board without five in a row is a draw."
+            "Reference rules from rule.md:\n"
+            f"{rule_text}"
         )
 
     return (
-        "Reference rules from rule.md:\n"
-        f"{rule_text}"
+        "Rules: Black is X, White is O, . means empty. Players alternate placing one stone "
+        "on an empty position. Five or more in a row wins. Full board without five in a row is a draw."
     )
 
 
