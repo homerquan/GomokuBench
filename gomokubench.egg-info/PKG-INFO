@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: gomokubench
-Version: 0.1.1
+Version: 0.1.2
 Summary: A reproducible search-vs-LLM Gomoku benchmark for AI labs, model builders, and researchers.
 Author: Homer Quan
 License-Expression: MIT
@@ -68,6 +68,13 @@ Install from PyPI:
 pip install gomokubench
 ```
 
+If your Python install does not put console scripts on `PATH`, use the module form:
+
+```bash
+python -m gomoku play
+python -m gomoku benchmark --model nemotron-3-super -r 10
+```
+
 Play against the engine:
 
 ```bash
@@ -78,6 +85,12 @@ Benchmark an LLM:
 
 ```bash
 gomoku benchmark --model nemotron-3-super -r 10
+```
+
+Benchmark with a custom model config file:
+
+```bash
+gomoku benchmark --model-file ./my-model.json -r 10
 ```
 
 Give the model a better chance with a weaker engine:
@@ -98,6 +111,17 @@ Or install from source:
 ```bash
 pip install .
 ```
+
+The package installs a `gomoku` console command. Some native Python installations place that command in a user scripts directory that is not on `PATH`, so `gomoku` may not be found immediately after `pip install`.
+
+You can always run GomokuBench through Python instead:
+
+```bash
+python -m gomoku play
+python -m gomoku benchmark --model nemotron-3-super -r 10
+```
+
+If `python -m gomoku` works but `gomoku` does not, add Python's scripts directory to `PATH`. On macOS and Linux this is often `~/.local/bin`; on Windows it is often `%APPDATA%\Python\Python3x\Scripts`.
 
 ## Play
 
@@ -129,6 +153,12 @@ Run an LLM against the built-in alpha-beta AI:
 gomoku benchmark --model nemotron-3-super -r 10
 ```
 
+You can also point directly at a custom model config JSON file:
+
+```bash
+gomoku benchmark --model-file ./my-model.json -r 10
+```
+
 To give the LLM a better chance, benchmark against a weaker engine:
 
 ```bash
@@ -144,6 +174,7 @@ gomoku benchmark --model nemotron-3-super -r 10 -v
 What this does:
 
 - Loads the model config from `models/nemotron-3-super.json`
+- Or, with `--model-file`, loads the model config from the JSON path you provide
 - Runs 10 rounds total
 - Uses balanced starts: 5 rounds with the AI moving first and 5 rounds with the LLM moving first
 - Always uses a `19x19` board
@@ -172,9 +203,12 @@ This repo now includes a few example model configs in the `models/` folder.
 
 You can add another model by creating a new JSON config that uses an OpenAI-compatible chat completions API format.
 
-In general:
+See the [models folder on GitHub](https://github.com/homerquan/GomokuBench/tree/main/models) for example config files.
+
+In general, either:
 
 - add a new config file under `models/`
+- or keep it anywhere and pass it with `--model-file /path/to/model.json`
 - point it at an OpenAI-compatible `baseURL`
 - set the remote `model` name
 - add any required API key env var to `.env`

@@ -74,49 +74,69 @@ def load_dotenv_value(key):
     return None
 
 
-def load_model_config(model_name):
-    candidate_paths = [Path.cwd() / "models" / f"{model_name}.json"]
-    candidate_paths.extend(
-        prefix_root / "models" / f"{model_name}.json" for prefix_root in PREFIX_CANDIDATES
-    )
-    candidate_paths.append(MODEL_DIR / f"{model_name}.json")
+def load_model_config(model_name=None, model_file=None):
+    if model_file:
+        path = Path(model_file).expanduser()
+        if not path.exists():
+            raise FileNotFoundError(f"Model config file not found: {path}")
+        if model_name is None:
+            model_name = path.stem
+    else:
+        candidate_paths = [Path.cwd() / "models" / f"{model_name}.json"]
+        candidate_paths.extend(
+            prefix_root / "models" / f"{model_name}.json" for prefix_root in PREFIX_CANDIDATES
+        )
+        candidate_paths.append(MODEL_DIR / f"{model_name}.json")
 
-    seen = set()
-    deduped_paths = []
-    for candidate_path in candidate_paths:
-        path_key = str(candidate_path)
-        if path_key in seen:
-            continue
-        seen.add(path_key)
-        deduped_paths.append(candidate_path)
-    path = next((candidate for candidate in deduped_paths if candidate.exists()), None)
-    if path is None:
-        raise FileNotFoundError(f"Model config not found for {model_name} in models/")
+        seen = set()
+        deduped_paths = []
+        for candidate_path in candidate_paths:
+            path_key = str(candidate_path)
+            if path_key in seen:
+                continue
+            seen.add(path_key)
+            deduped_paths.append(candidate_path)
+        path = next((candidate for candidate in deduped_paths if candidate.exists()), None)
+        if path is None:
+            raise FileNotFoundError(f"Model config not found for {model_name} in models/")
 
     with path.open("r", encoding="utf-8") as handle:
         raw_config = json.load(handle)
 
     providers = raw_config.get("provider", {})
+    selected_model = find_model_config(providers, model_name, path)
+    provider_id, provider_config, resolved_model_name, model_config = selected_model
+    base_url = provider_config.get("options", {}).get("baseURL")
+    if not base_url:
+        raise ValueError(f"Model config {path} is missing provider.options.baseURL")
+
+    return ModelConfig(
+        config_name=resolved_model_name,
+        model_id=model_config.get("model", resolved_model_name),
+        display_name=model_config.get("name", resolved_model_name),
+        provider_id=provider_id,
+        provider_name=provider_config.get("name", provider_id),
+        base_url=base_url.rstrip("/"),
+        tools_enabled=bool(model_config.get("tools", False)),
+        api_key_env=provider_config.get("options", {}).get("apiKeyEnv"),
+        extra_body=dict(model_config.get("extra_body", {})),
+    )
+
+
+def find_model_config(providers, model_name, path):
     for provider_id, provider_config in providers.items():
         models = provider_config.get("models", {})
         if model_name not in models:
             continue
 
-        model_config = models[model_name]
-        base_url = provider_config.get("options", {}).get("baseURL")
-        if not base_url:
-            raise ValueError(f"Model config {path} is missing provider.options.baseURL")
+        return provider_id, provider_config, model_name, models[model_name]
 
-        return ModelConfig(
-            config_name=model_name,
-            model_id=model_config.get("model", model_name),
-            display_name=model_config.get("name", model_name),
-            provider_id=provider_id,
-            provider_name=provider_config.get("name", provider_id),
-            base_url=base_url.rstrip("/"),
-            tools_enabled=bool(model_config.get("tools", False)),
-            api_key_env=provider_config.get("options", {}).get("apiKeyEnv"),
-            extra_body=dict(model_config.get("extra_body", {})),
-        )
+    all_models = []
+    for provider_id, provider_config in providers.items():
+        for fallback_model_name, model_config in provider_config.get("models", {}).items():
+            all_models.append((provider_id, provider_config, fallback_model_name, model_config))
+
+    if len(all_models) == 1:
+        return all_models[0]
 
     raise ValueError(f"Model {model_name} was not found inside {path}")

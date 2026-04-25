@@ -225,7 +225,10 @@ def run_benchmark(args, progress_callback=None):
     if args.rounds <= 0:
         raise ValueError("Rounds must be a positive integer.")
 
-    model_config = load_model_config(args.model)
+    model_config = load_model_config(
+        getattr(args, "model", None),
+        model_file=getattr(args, "model_file", None),
+    )
     runner = BenchmarkRunner(
         model_config=model_config,
         rounds=args.rounds,
@@ -235,7 +238,7 @@ def run_benchmark(args, progress_callback=None):
         debug_http=getattr(args, "debug_http", False),
     )
     report = runner.run()
-    output_path = save_report(args.model, report)
+    output_path = save_report(model_config.config_name, report)
     return output_path, report
 
 

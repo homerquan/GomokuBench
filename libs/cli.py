@@ -44,7 +44,9 @@ def build_parser():
     )
 
     benchmark_parser = subparsers.add_parser("benchmark", help="Benchmark an LLM against the AI.")
-    benchmark_parser.add_argument("--model", required=True, help="Model config name in the models folder.")
+    model_group = benchmark_parser.add_mutually_exclusive_group(required=True)
+    model_group.add_argument("--model", help="Model config name in the models folder.")
+    model_group.add_argument("--model-file", help="Path to a custom model JSON config file.")
     benchmark_parser.add_argument(
         "-r",
         "--rounds",
