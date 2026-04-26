@@ -70,12 +70,6 @@ Benchmark with a custom model config file:
 gomoku benchmark --model-file ./my-model.json -r 10
 ```
 
-Give the model a better chance against the search engine:
-
-```bash
-gomoku benchmark --model nemotron-3-super -r 10 --ai-level easy
-```
-
 Run two LLMs against each other:
 
 ```bash
@@ -84,6 +78,7 @@ gomoku dual --BLACK-LLM-FILE ./black-model.json --WHITE-LLM-FILE ./white-model.j
 
 You can use the same model config for both sides; GomokuBench keeps their game prompts and reasoning logs separate.
 When `-r` is greater than 1, the first player alternates by round for fairer play: White starts round 1, Black starts round 2, and so on.
+Dual mode does not use `--ai-level` because no search engine is involved.
 
 ## Requirements
 
