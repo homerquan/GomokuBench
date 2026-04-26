@@ -1,6 +1,6 @@
 # GomokuBench
 
-GomokuBench is a lightweight benchmark for testing frontier LLMs against a search-powered Gomoku engine in a setting that is simple, adversarial, reproducible, and easy to inspect move by move.
+GomokuBench is a lightweight benchmark for testing frontier LLMs against a search-powered Gomoku engine in a setting that is simple, adversarial, reproducible, and easy to inspect move by move. It also supports **dual mode**, where two LLMs play Gomoku against each other as Black and White with separate prompts, responses, and reasoning logs.
 
 [YouTube Demo](https://youtu.be/QbaC1Qbbno4)
 
@@ -70,194 +70,13 @@ Benchmark with a custom model config file:
 gomoku benchmark --model-file ./my-model.json -r 10
 ```
 
-Give the model a better chance with a weaker engine:
+Run two LLMs against each other:
 
 ```bash
-gomoku benchmark --model nemotron-3-super -r 10 --ai-level easy
+gomoku dual --BLACK-LLM-FILE ./black-model.json --WHITE-LLM-FILE ./white-model.json -r 10
 ```
 
-## Requirements
-
-- Python 3
-- `numpy`
-
-## Install
-
-Or install from source:
-
-```bash
-pip install .
-```
-
-The package installs a `gomoku` console command. Some native Python installations place that command in a user scripts directory that is not on `PATH`, so `gomoku` may not be found immediately after `pip install`.
-
-You can always run GomokuBench through Python instead:
-
-```bash
-python -m gomoku play
-python -m gomoku benchmark --model nemotron-3-super -r 10
-```
-
-If `python -m gomoku` works but `gomoku` does not, add Python's scripts directory to `PATH`. On macOS and Linux this is often `~/.local/bin`; on Windows it is often `%APPDATA%\Python\Python3x\Scripts`.
-
-## Play
-
-```bash
-gomoku play
-```
-
-Optional flags:
-
-- `--player black|white`
-- `--ai-first`
-- `--ai-level easy|standard|hard`
-
-The CLI always uses a `19x19` board.
-
-AI levels:
-
-- `easy`: shallower search with a small amount of move randomness
-- `standard`: the default benchmark setting
-- `hard`: deeper search
-
-Moves use `x,y` with 1-based coordinates, for example `10,10`.
-
-## Benchmark
-
-Run an LLM against the built-in alpha-beta AI:
-
-```bash
-gomoku benchmark --model nemotron-3-super -r 10
-```
-
-You can also point directly at a custom model config JSON file:
-
-```bash
-gomoku benchmark --model-file ./my-model.json -r 10
-```
-
-To give the LLM a better chance, benchmark against a weaker engine:
-
-```bash
-gomoku benchmark --model nemotron-3-super -r 10 --ai-level easy
-```
-
-To watch the rounds play out in the console while benchmarking:
-
-```bash
-gomoku benchmark --model nemotron-3-super -r 10 -v
-```
-
-What this does:
-
-- Loads the model config from `models/nemotron-3-super.json`
-- Or, with `--model-file`, loads the model config from the JSON path you provide
-- Runs 10 rounds total
-- Uses balanced starts: 5 rounds with the AI moving first and 5 rounds with the LLM moving first
-- Always uses a `19x19` board
-- Uses the selected AI level, defaulting to `standard`
-- `-v` prints each round, move, and board state in the console
-- Saves the benchmark report to `benchmarks/nemotron-3-super.json`
-
-The benchmark report is saved as JSON and includes the summary plus per-game move logs and final boards.
-
-## What Gets Saved
-
-Each benchmark run saves a JSON report in `benchmarks/` with:
-
-- model name and provider
-- board size and AI level
-- total wins, losses, and draws
-- which side moved first in each round
-- full move logs
-- final board states
-
-That makes GomokuBench useful both as a quick CLI demo and as a small research harness for repeatable comparisons across model versions and providers.
-
-## Adding Models
-
-This repo now includes a few example model configs in the `models/` folder.
-
-You can add another model by creating a new JSON config that uses an OpenAI-compatible chat completions API format.
-
-See the [models folder on GitHub](https://github.com/homerquan/GomokuBench/tree/main/models) for example config files.
-
-In general, either:
-
-- add a new config file under `models/`
-- or keep it anywhere and pass it with `--model-file /path/to/model.json`
-- point it at an OpenAI-compatible `baseURL`
-- set the remote `model` name
-- add any required API key env var to `.env`
-
-Examples in this repo include Ollama-compatible, Hugging Face Router, and OpenRouter model configs.
-
-
-It is built for AI companies, model builders, and researchers who want a fast way to answer a practical question:
-
-**Can a general-purpose language model consistently beat a classical search algorithm in a fully specified board game?**
-
-Until `2026.4.26`, no LLM in this benchmark has beaten the built-in AlphaBeta search engine. If you find one, please share it with us.
-
-GomokuBench is designed to be easy to plug into model APIs, easy to run from the command line, and easy to audit after the game ends. Every move can be replayed, every prompt is explicit, and every result is saved as structured JSON.
-
-Author: **Homer Quan**  
-GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench)
-
-## Why This Benchmark
-
-- Simple game, hard reasoning: Gomoku has clear rules and no hidden information, so failures are easier to interpret.
-- Search vs LLM: benchmark a deterministic AlphaBeta engine against modern chat models under the same rules.
-- Fast iteration: add a new model with a small JSON config and start benchmarking right away.
-- Useful outputs: save per-game logs, final boards, and aggregate win/loss results for later analysis.
-- Good for demos and research: use it for model evals, prompting experiments, tool-use studies, and public scoreboards.
-
-## Current Results
-
-As of `2026.4.26`, every model listed below is still down `10:0` against the built-in AlphaBeta search engine.
-
-| Model | AlphaBeta (Search) | LLM |
-| --- | ---: | ---: |
-| `nemotron-3-super` | 10 | 0 |
-| `gemma4:latest` | 10 | 0 |
-| `deepseek-v4-pro-together` | 10 | 0 |
-| `kimi-k2.6-novita` | 10 | 0 |
-| `gpt-5.5-pro-openrouter` | 10 | 0 |
-| `gpt-5-mini` | 10 | 0 |
-| `gemini-3-flash-preview` | 10 | 0 |
-
-## Quick Start
-
-Install from PyPI:
-
-```bash
-pip install gomokubench
-```
-
-If your Python install does not put console scripts on `PATH`, use the module form:
-
-```bash
-python -m gomoku play
-python -m gomoku benchmark --model nemotron-3-super -r 10
-```
-
-Play against the engine:
-
-```bash
-gomoku play
-```
-
-Benchmark an LLM:
-
-```bash
-gomoku benchmark --model nemotron-3-super -r 10
-```
-
-Benchmark with a custom model config file:
-
-```bash
-gomoku benchmark --model-file ./my-model.json -r 10
-```
+You can use the same model config for both sides; GomokuBench keeps their game prompts and reasoning logs separate.
 
 Give the model a better chance with a weaker engine:
 

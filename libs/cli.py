@@ -3,6 +3,7 @@ import argparse
 from libs import piece
 from libs.ai import AI_LEVELS
 from libs.benchmark import BenchmarkLLMCallError, run_benchmark
+from libs.dual import DualLLMCallError, run_dual
 from libs.game import GameSession
 from libs.progress import BenchmarkProgress
 
@@ -15,6 +16,8 @@ def run_cli(argv=None):
         return run_play(args)
     if args.command == "benchmark":
         return run_benchmark_command(args)
+    if args.command == "dual":
+        return run_dual_command(args)
 
     parser.print_help()
     return 1
@@ -70,6 +73,40 @@ def build_parser():
         choices=tuple(AI_LEVELS.keys()),
         default="standard",
         help="AI strength level. Default: standard",
+    )
+
+    dual_parser = subparsers.add_parser("dual", help="Run a Black LLM vs White LLM game.")
+    dual_parser.add_argument(
+        "--BLACK-LLM-FILE",
+        "--black-llm-file",
+        dest="black_llm_file",
+        required=True,
+        help="Path to the Black LLM model config JSON file.",
+    )
+    dual_parser.add_argument(
+        "--WHITE-LLM-FILE",
+        "--white-llm-file",
+        dest="white_llm_file",
+        required=True,
+        help="Path to the White LLM model config JSON file.",
+    )
+    dual_parser.add_argument(
+        "-r",
+        "--rounds",
+        type=int,
+        default=1,
+        help="How many complete LLM-vs-LLM games to play. Default: 1",
+    )
+    dual_parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Print each round, move, and board state in the console.",
+    )
+    dual_parser.add_argument(
+        "--debug-http",
+        action="store_true",
+        help="Print HTTP error details from an LLM provider when a request fails.",
     )
     return parser
 
@@ -158,6 +195,36 @@ def run_benchmark_command(args):
         f"AI wins: {summary['ai_wins']}, "
         f"Draws: {summary['draws']}"
     )
+    return 0
+
+
+def run_dual_command(args):
+    try:
+        output_path, report = run_dual(
+            args,
+            start_callback=lambda runner: print(
+                "LLM reasoning process logs in: "
+                f"black={runner.black_reasoning_log_path}, "
+                f"white={runner.white_reasoning_log_path}"
+            ),
+        )
+    except DualLLMCallError as error:
+        print(error)
+        print("Dual game was not saved.")
+        return 1
+    except (FileNotFoundError, ValueError, RuntimeError) as error:
+        print(error)
+        return 1
+
+    print(f"Saved dual game to {output_path}")
+    summary = report["summary"]
+    print(
+        f"Black wins: {summary['black_wins']}, "
+        f"White wins: {summary['white_wins']}, "
+        f"Draws: {summary['draws']}"
+    )
+    if report["rounds"] == 1:
+        print(f"Winner: {report['winner']}. Reason: {report['termination_reason']}.")
     return 0
 
 

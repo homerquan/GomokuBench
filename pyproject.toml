@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gomokubench"
-version = "0.1.4"
-description = "A reproducible search-vs-LLM Gomoku benchmark for AI labs, model builders, and researchers."
+version = "0.1.5"
+description = "A reproducible Gomoku benchmark for search-vs-LLM and LLM-vs-LLM dual play."
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
@@ -16,7 +16,7 @@ authors = [
 dependencies = [
   "numpy"
 ]
-keywords = ["gomoku", "benchmark", "llm", "alpha-beta", "minimax", "cli", "research"]
+keywords = ["gomoku", "benchmark", "llm", "dual", "alpha-beta", "minimax", "cli", "research"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",

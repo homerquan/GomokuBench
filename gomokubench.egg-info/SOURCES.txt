@@ -14,6 +14,7 @@ libs/ai.py
 libs/benchmark.py
 libs/board.py
 libs/cli.py
+libs/dual.py
 libs/eval_fn.py
 libs/game.py
 libs/llm_player.py
