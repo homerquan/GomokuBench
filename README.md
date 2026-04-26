@@ -77,6 +77,7 @@ gomoku dual --BLACK-LLM-FILE ./black-model.json --WHITE-LLM-FILE ./white-model.j
 ```
 
 You can use the same model config for both sides; GomokuBench keeps their game prompts and reasoning logs separate.
+When `-r` is greater than 1, the first player alternates by round for fairer play: White starts round 1, Black starts round 2, and so on.
 
 Give the model a better chance with a weaker engine:
 

@@ -120,13 +120,15 @@ class DualRunner:
         return report
 
     def _play_game(self, round_number):
-        state = BoardState(size=self.size)
+        first_color = self._first_color_for_round(round_number)
+        state = BoardState(size=self.size, color=-first_color)
         moves = []
         termination_reason = None
 
         self._log(
             (
                 f"Dual LLM game {round_number}/{self.rounds} started. "
+                f"{color_name(first_color).capitalize()} moves first. "
                 f"Black: {self.black_config.display_name}. "
                 f"White: {self.white_config.display_name}."
             ),
@@ -151,6 +153,7 @@ class DualRunner:
                 winner_color = -color
                 return self._build_game_report(
                     round_number=round_number,
+                    first_color=first_color,
                     moves=moves,
                     state=state,
                     outcome=f"{color_name(winner_color)}_win",
@@ -200,6 +203,7 @@ class DualRunner:
         )
         return self._build_game_report(
             round_number=round_number,
+            first_color=first_color,
             moves=moves,
             state=state,
             outcome=outcome,
@@ -210,6 +214,7 @@ class DualRunner:
     def _build_game_report(
         self,
         round_number,
+        first_color,
         moves,
         state,
         outcome,
@@ -219,6 +224,7 @@ class DualRunner:
     ):
         report = {
             "round": round_number,
+            "first_player": color_name(first_color),
             "outcome": outcome,
             "winner": winner,
             "termination_reason": termination_reason,
@@ -234,6 +240,11 @@ class DualRunner:
 
     def _config_for_color(self, color):
         return self.black_config if color == piece.BLACK else self.white_config
+
+    def _first_color_for_round(self, round_number):
+        if self.rounds == 1:
+            return piece.BLACK
+        return piece.WHITE if round_number % 2 == 1 else piece.BLACK
 
     def _log(self, message="", board=None):
         if not self.verbose:

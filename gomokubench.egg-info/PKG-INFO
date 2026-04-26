@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: gomokubench
-Version: 0.1.5
+Version: 0.1.6
 Summary: A reproducible Gomoku benchmark for search-vs-LLM and LLM-vs-LLM dual play.
 Author: Homer Quan
 License-Expression: MIT
@@ -102,6 +102,7 @@ gomoku dual --BLACK-LLM-FILE ./black-model.json --WHITE-LLM-FILE ./white-model.j
 ```
 
 You can use the same model config for both sides; GomokuBench keeps their game prompts and reasoning logs separate.
+When `-r` is greater than 1, the first player alternates by round for fairer play: White starts round 1, Black starts round 2, and so on.
 
 Give the model a better chance with a weaker engine:
 
