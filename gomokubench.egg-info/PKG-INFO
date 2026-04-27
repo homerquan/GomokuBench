@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: gomokubench
-Version: 0.1.7
+Version: 0.1.8
 Summary: A reproducible Gomoku benchmark for search-vs-LLM and LLM-vs-LLM dual play.
 Author: Homer Quan
 License-Expression: MIT
@@ -48,19 +48,17 @@ GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench)
 - Useful outputs: save per-game logs, final boards, and aggregate win/loss results for later analysis.
 - Good for demos and research: use it for model evals, prompting experiments, tool-use studies, and public scoreboards.
 
-## Current Results
+## Current Leaderboard
 
-As of `2026.4.26`, every model listed below is still down `10:0` against the built-in AlphaBeta search engine.
+As of `2026.4.27`, every model listed below is still down `10:0` against the built-in AlphaBeta search engine.
 
-| Model | AlphaBeta (Search) | LLM |
-| --- | ---: | ---: |
-| `nemotron-3-super` | 10 | 0 |
-| `gemma4:latest` | 10 | 0 |
-| `deepseek-v4-pro-together` | 10 | 0 |
-| `kimi-k2.6-novita` | 10 | 0 |
-| `gpt-5.5-pro-openrouter` | 10 | 0 |
-| `gpt-5-mini` | 10 | 0 |
-| `gemini-3-flash-preview` | 10 | 0 |
+| Model | Wins | Losses | Draws | Avg Moves (Win) | Avg Moves (Loss) | Score |
+|---|---:|---:|---:|---:|---:|---:|
+| 👑 GPT-5.5 (OpenRouter) | 0 | 10 | 0 | 0 | 9.2 | 1.84 |
+| Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
+| GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
+| gemma4:latest | 0 | 10 | 0 | 0 | 5.0 | 1.0 |
+| Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
 
 ## Quick Start
 
@@ -104,6 +102,12 @@ gomoku dual --BLACK-LLM-FILE ./black-model.json --WHITE-LLM-FILE ./white-model.j
 You can use the same model config for both sides; GomokuBench keeps their game prompts and reasoning logs separate.
 When `-r` is greater than 1, the first player alternates by round for fairer play: White starts round 1, Black starts round 2, and so on.
 Dual mode does not use `--ai-level` because no search engine is involved.
+
+If you have spare credit to burn, try:
+
+```bash
+gomoku dual --WHITE-LLM-FILE models/claude-opus-4.7.json --BLACK-LLM-FILE models/gpt-5.5-pro.json -r 10 -v
+```
 
 ## Requirements
 
