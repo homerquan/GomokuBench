@@ -1,16 +1,23 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "ollama": {
+    "openrouter": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama (spark)",
+      "name": "OpenRouter",
       "options": {
-        "baseURL": "http://192.168.4.173:11434/v1"
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
         "nemotron-3-super": {
           "name": "Nemotron 3 Super",
-          "tools": true
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "tools": true,
+          "extra_body": {
+            "reasoning": {
+              "enabled": true
+            }
+          }
         }
       }
     }

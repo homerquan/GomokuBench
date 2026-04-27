@@ -9,15 +9,9 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemma4:latest": {
-          "name": "Gemma 4 26B A4B IT (OpenRouter)",
-          "model": "google/gemma-4-26b-a4b-it:free",
-          "tools": true,
-          "extra_body": {
-            "reasoning": {
-              "enabled": true
-            }
-          }
+        "openai/gpt-oss-120b:free": {
+          "name": "GPT-OSS 120B (Free)",
+          "tools": true
         }
       }
     }

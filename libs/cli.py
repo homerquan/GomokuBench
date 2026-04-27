@@ -6,6 +6,7 @@ from libs.benchmark import BenchmarkLLMCallError, run_benchmark
 from libs.dual import DualLLMCallError, run_dual
 from libs.game import GameSession
 from libs.progress import BenchmarkProgress
+from libs.report import generate_report
 
 
 def run_cli(argv=None):
@@ -18,6 +19,9 @@ def run_cli(argv=None):
         return run_benchmark_command(args)
     if args.command == "dual":
         return run_dual_command(args)
+    if args.command == "report":
+        generate_report()
+        return 0
 
     parser.print_help()
     return 1
@@ -108,6 +112,7 @@ def build_parser():
         action="store_true",
         help="Print HTTP error details from an LLM provider when a request fails.",
     )
+    subparsers.add_parser("report", help="Report benchmark results.")
     return parser
 
 

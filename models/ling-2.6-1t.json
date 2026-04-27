@@ -9,15 +9,10 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemma4:latest": {
-          "name": "Gemma 4 26B A4B IT (OpenRouter)",
-          "model": "google/gemma-4-26b-a4b-it:free",
-          "tools": true,
-          "extra_body": {
-            "reasoning": {
-              "enabled": true
-            }
-          }
+        "ling-2.6-1t": {
+          "name": "InclusionAI Ling 2.6 1T",
+          "model": "inclusionai/ling-2.6-1t:free",
+          "tools": true
         }
       }
     }

@@ -211,12 +211,32 @@ You can add another model by creating a new JSON config that uses an OpenAI-comp
 
 See the [models folder on GitHub](https://github.com/homerquan/GomokuBench/tree/main/models) for example config files.
 
-In general, either:
+### API Keys and Environment Variables
+
+For models requiring authentication, set the necessary API key in your environment.
+
+If you are using OpenRouter, you will need an `OPENROUTER_API_KEY`. You can obtain your API key by signing up at [https://openrouter.ai](https://openrouter.ai).
+
+Once you have your key, set it as an environment variable in your terminal:
+
+```bash
+export OPENROUTER_API_KEY=your_actual_api_key_here
+```
+
+Alternatively, you can add it to a `.env` file in the project root:
+
+```text
+OPENROUTER_API_KEY=your_actual_api_key_here
+```
+
+The benchmark will look for this environment variable when running models configured to use it.
+
+In general, to add a model:
 
 - add a new config file under `models/`
 - or keep it anywhere and pass it with `--model-file /path/to/model.json`
 - point it at an OpenAI-compatible `baseURL`
 - set the remote `model` name
-- add any required API key env var to `.env`
+- add any required API key env var to `.env` or export it directly in your terminal
 
 Examples in this repo include Ollama-compatible, Hugging Face Router, and OpenRouter model configs.

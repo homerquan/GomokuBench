@@ -9,9 +9,9 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemma4:latest": {
-          "name": "Gemma 4 26B A4B IT (OpenRouter)",
-          "model": "google/gemma-4-26b-a4b-it:free",
+        "hy3-preview": {
+          "name": "Tencent Hunyuan 3 Preview",
+          "model": "tencent/hy3-preview:free",
           "tools": true,
           "extra_body": {
             "reasoning": {

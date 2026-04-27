@@ -1,10 +1,10 @@
 {
-  "model": "nemotron-3-super",
-  "model_name": "Nemotron 3 Super",
-  "provider": "Ollama (spark)",
-  "generated_at": "2026-04-26T13:19:04.714739+00:00",
-  "run_id": "9e020f79dc2c45fdb8c10eaf487cbf36",
-  "reasoning_log": "/tmp/gomokubench/9e020f79dc2c45fdb8c10eaf487cbf36.log",
+  "model": "openai/gpt-oss-120b:free",
+  "model_name": "GPT-OSS 120B (Free)",
+  "provider": "OpenRouter",
+  "generated_at": "2026-04-27T14:27:30.096929+00:00",
+  "run_id": "63312282f51e483892cd4cad55a9d30e",
+  "reasoning_log": "/tmp/gomokubench/63312282f51e483892cd4cad55a9d30e.log",
   "rounds": 10,
   "board_size": 19,
   "ai_level": "standard",
@@ -28,87 +28,65 @@
         {
           "player": "ai",
           "color": "black",
-          "move": "11,11"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "10,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,10, 11,10, 12,10, 10,11, 12,11, 10,12, 11,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "11,9"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "11,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,10, 10,8, 11,8, 12,10, 10,12, 11,12, 10,9,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "12,10"
+          "move": "10,11"
         },
         {
           "player": "llm",
           "color": "white",
           "move": "9,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,10, 10,8, 10,12, 10,9, 10,11, 12,9, 13,9, 1"
+          "response": "9,10"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "13,9"
+          "move": "10,9"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "8,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES list. The list: \"8,10, 10,12, 14,8, 10,9, 10,8, 12,9, 10,11,"
+          "move": "10,10",
+          "response": "10,10"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "7,10"
+          "move": "11,10"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "10,12",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,12, 14,8, 10,8, 10,9, 12,9, 10,11, 11,8, 1"
+          "move": "9,9",
+          "response": "9,9"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "13,11"
+          "move": "9,8"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "10,11",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. No reasoning. Just pick one. The fallback is 10,11. We can choose any. Let's choose 10,11. Ensure format: \"10,11\". No extra spaces or newline. Output"
+          "move": "8,8",
+          "response": "8,8"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "10,8"
+          "move": "12,11"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "10,13",
-          "response": "10,13"
+          "move": "11,11",
+          "response": "11,11"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "9,7"
+          "move": "8,7"
         }
       ],
-      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  \n10  .  .  .  .  .  .  X  O  O  O  O  X  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  O  X  .  .  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  O  X  .  .  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  O  O  X  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  X  O  X  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
     },
     {
       "round": 2,
@@ -122,24 +100,13 @@
         {
           "player": "ai",
           "color": "black",
-          "move": "9,10"
+          "move": "10,11"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "8,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"8,9, 9,9, 10,9, 8,10, 10,10, 8,11, 9,11, 10,1"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "9,8"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "9,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,9, 8,7, 9,7, 10,9, 8,11, 9,11, 8,8, 7,9, 8,"
+          "move": "9,10",
+          "response": "9,10"
         },
         {
           "player": "ai",
@@ -149,30 +116,8 @@
         {
           "player": "llm",
           "color": "white",
-          "move": "7,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"7,9, 8,7, 8,11, 8,8, 8,10, 10,8, 11,8, 10,10,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "11,8"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "6,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list is given as \"6,9, 8,11, 12,7, 8,8, 8,7, 10,8, 8,10, 9,7,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "5,9"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "8,11",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"8,11, 12,7, 8,7, 8,8, 10,8, 8,10, 9,7, 11,7,"
+          "move": "10,10",
+          "response": "10,10"
         },
         {
           "player": "ai",
@@ -183,26 +128,37 @@
           "player": "llm",
           "color": "white",
           "move": "8,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list is given as \"8,10, 7,10, 8,8, 5,8, 8,12, 9,12, 8,7, 12,1"
+          "response": "8,10"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "8,7"
+          "move": "12,9"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "8,12",
-          "response": "8,12"
+          "move": "9,9",
+          "response": "9,9"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "7,6"
+          "move": "9,12"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "7,10",
+          "response": "7,10"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "13,8"
         }
       ],
-      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  X  O  O  O  O  X  .  .  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  O  O  O  O  X  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
     },
     {
       "round": 3,
@@ -216,68 +172,13 @@
         {
           "player": "ai",
           "color": "black",
-          "move": "11,11"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "10,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,10, 11,10, 12,10, 10,11, 12,11, 10,12, 11,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
           "move": "11,9"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "11,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,10, 10,8, 11,8, 12,10, 10,12, 11,12, 10,9,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "12,10"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "9,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,10, 10,8, 10,12, 10,9, 10,11, 12,9, 13,9, 1"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "13,9"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "8,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES list. The list: \"8,10, 10,12, 14,8, 10,9, 10,8, 12,9, 10,11,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "7,10"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "10,12",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,12, 14,8, 10,8, 10,9, 12,9, 10,11, 11,8, 1"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "13,11"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "10,11",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. No analysis. Just pick one. The fallback is 10,11. We can choose any. Let's choose 10,11. Ensure format: \"10,11\". No extra spaces or newline. Output"
+          "move": "11,8",
+          "response": "11,8"
         },
         {
           "player": "ai",
@@ -287,16 +188,49 @@
         {
           "player": "llm",
           "color": "white",
-          "move": "10,13",
-          "response": "10,13"
+          "move": "9,7",
+          "response": "9,7"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "9,7"
+          "move": "9,9"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "9,6",
+          "response": "9,6"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,7"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "10,7",
+          "response": "10,7"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "12,6"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "12,9",
+          "response": "12,9"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "13,5"
         }
       ],
-      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  \n10  .  .  .  .  .  .  X  O  O  O  O  X  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  O  .  .  X  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  O  O  X  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  X  O  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  X  .  X  O  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
     },
     {
       "round": 4,
@@ -310,68 +244,35 @@
         {
           "player": "ai",
           "color": "black",
-          "move": "10,10"
+          "move": "9,9"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "9,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,9, 10,9, 11,9, 9,10, 11,10, 9,11, 10,11, 11"
+          "move": "9,8",
+          "response": "9,8"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "10,8"
+          "move": "8,8"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "10,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,9, 9,7, 10,7, 11,9, 9,11, 10,11, 9,8, 8,9,"
+          "move": "7,7",
+          "response": "7,7"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "11,9"
+          "move": "7,9"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "8,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"8,9, 9,7, 9,11, 9,8, 9,10, 11,8, 12,8, 11,10,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "12,8"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "7,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"7,9, 9,11, 13,7, 9,8, 9,7, 11,8, 9,10, 10,7,"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "6,9"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "9,11",
-          "response": "9,11"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "12,10"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "9,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,10, 8,10, 9,8, 6,8, 9,12, 10,12, 9,7, 13,11"
+          "move": "7,6",
+          "response": "7,6"
         },
         {
           "player": "ai",
@@ -381,16 +282,27 @@
         {
           "player": "llm",
           "color": "white",
-          "move": "9,12",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. No reasoning. Just pick one. The fallback is 9,12. We can choose any. Let's choose 9,12. Ensure format \"9,12\". No extra spaces or newline. Output exactly that."
+          "move": "7,5",
+          "response": "7,5"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "8,6"
+          "move": "10,6"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "7,4",
+          "response": "7,4"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,5"
         }
       ],
-      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  X  O  O  O  O  X  .  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  O  .  .  .  X  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  O  .  .  X  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  O  .  X  .  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  X  O  .  .  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
     },
     {
       "round": 5,
@@ -404,87 +316,65 @@
         {
           "player": "ai",
           "color": "black",
-          "move": "10,9"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "9,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,8, 10,8, 11,8, 9,9, 11,9, 9,10, 10,10, 11,1"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "10,7"
+          "move": "11,9"
         },
         {
           "player": "llm",
           "color": "white",
           "move": "10,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,8, 9,6, 10,6, 11,8, 9,10, 10,10, 9,7, 8,8,"
+          "response": "10,8"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "11,8"
+          "move": "11,7"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "8,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"8,8, 9,6, 9,10, 9,7, 9,9, 11,7, 12,7, 11,9, 1"
+          "move": "11,8",
+          "response": "11,8"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "12,7"
+          "move": "12,8"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "7,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"7,8, 9,10, 13,6, 9,7, 9,6, 11,7, 9,9, 10,6, 1"
+          "move": "10,6",
+          "response": "10,6"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "6,8"
+          "move": "13,7"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "9,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"9,10, 13,6, 9,6, 9,7, 11,7, 9,9, 10,6, 12,6,"
+          "move": "10,7",
+          "response": "10,7"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "12,9"
+          "move": "10,10"
         },
         {
           "player": "llm",
           "color": "white",
-          "move": "9,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The instruction: \"Your entire response must be one coordinate copied exactly from LEGAL_MOVES.\" So we need to pick one. No analysis needed. Could just pick the fallback 9,9. That is in LEGAL_M"
+          "move": "10,5",
+          "response": "10,5"
         },
         {
           "player": "ai",
           "color": "black",
-          "move": "9,6"
-        },
-        {
-          "player": "llm",
-          "color": "white",
-          "move": "9,11",
-          "response": "9,11"
-        },
-        {
-          "player": "ai",
-          "color": "black",
-          "move": "8,5"
+          "move": "14,6"
         }
       ],
-      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  X  O  O  O  O  X  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  O  .  .  .  X  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  .  O  X  .  X  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  .  O  O  X  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
     },
     {
       "round": 6,
@@ -510,7 +400,7 @@
           "player": "llm",
           "color": "black",
           "move": "12,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"12,10, 10,12, 10,9, 11,9, 9,10, 11,10, 9,11,"
+          "response": "12,10"
         },
         {
           "player": "ai",
@@ -521,7 +411,7 @@
           "player": "llm",
           "color": "black",
           "move": "11,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,9, 10,12, 12,12, 10,9, 12,9, 9,11, 10,11,"
+          "response": "11,9"
         },
         {
           "player": "ai",
@@ -532,7 +422,7 @@
           "player": "llm",
           "color": "black",
           "move": "10,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES list. The list: \"10,8, 13,11, 12,8, 10,11, 12,11, 9,9, 10,9,"
+          "response": "10,8"
         },
         {
           "player": "ai",
@@ -621,7 +511,7 @@
           "player": "llm",
           "color": "black",
           "move": "12,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"12,10, 10,12, 10,9, 11,9, 9,10, 11,10, 9,11,"
+          "response": "12,10"
         },
         {
           "player": "ai",
@@ -632,7 +522,7 @@
           "player": "llm",
           "color": "black",
           "move": "11,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,9, 10,12, 12,12, 10,9, 12,9, 9,11, 10,11,"
+          "response": "11,9"
         },
         {
           "player": "ai",
@@ -643,23 +533,12 @@
           "player": "llm",
           "color": "black",
           "move": "10,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,8, 13,11, 12,8, 10,11, 12,11, 9,9, 10,9, 1"
+          "response": "10,8"
         },
         {
           "player": "ai",
           "color": "white",
           "move": "9,7"
-        },
-        {
-          "player": "llm",
-          "color": "black",
-          "move": "13,11",
-          "response": "13,11"
-        },
-        {
-          "player": "ai",
-          "color": "white",
-          "move": "14,12"
         },
         {
           "player": "llm",
@@ -682,6 +561,17 @@
           "player": "ai",
           "color": "white",
           "move": "10,7"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "13,11",
+          "response": "13,11"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "14,12"
         },
         {
           "player": "llm",
@@ -732,7 +622,7 @@
           "player": "llm",
           "color": "black",
           "move": "12,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"12,10, 10,12, 10,9, 11,9, 9,10, 11,10, 9,11,"
+          "response": "12,10"
         },
         {
           "player": "ai",
@@ -743,7 +633,7 @@
           "player": "llm",
           "color": "black",
           "move": "11,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,9, 10,12, 12,12, 10,9, 12,9, 9,11, 10,11,"
+          "response": "11,9"
         },
         {
           "player": "ai",
@@ -754,7 +644,7 @@
           "player": "llm",
           "color": "black",
           "move": "10,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"10,8, 13,11, 12,8, 10,11, 12,11, 9,9, 10,9, 1"
+          "response": "10,8"
         },
         {
           "player": "ai",
@@ -765,7 +655,7 @@
           "player": "llm",
           "color": "black",
           "move": "13,11",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The previous attempt gave \"13\" which is invalid. We must output something like \"13,11\". The fallback is 13,11. We can choose any legal move. Let's just output \"13,"
+          "response": "13,11"
         },
         {
           "player": "ai",
@@ -843,7 +733,7 @@
           "player": "llm",
           "color": "black",
           "move": "12,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"12,10, 10,12, 10,9, 11,9, 9,10, 11,10, 9,11,"
+          "response": "12,10"
         },
         {
           "player": "ai",
@@ -854,7 +744,7 @@
           "player": "llm",
           "color": "black",
           "move": "11,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,9, 10,12, 12,12, 10,9, 12,9, 9,11, 10,11,"
+          "response": "11,9"
         },
         {
           "player": "ai",
@@ -865,7 +755,7 @@
           "player": "llm",
           "color": "black",
           "move": "10,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES list. The list: \"10,8, 13,11, 12,8, 10,11, 12,11, 9,9, 10,9,"
+          "response": "10,8"
         },
         {
           "player": "ai",
@@ -954,7 +844,7 @@
           "player": "llm",
           "color": "black",
           "move": "12,10",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"12,10, 10,12, 10,9, 11,9, 9,10, 11,10, 9,11,"
+          "response": "12,10"
         },
         {
           "player": "ai",
@@ -965,7 +855,7 @@
           "player": "llm",
           "color": "black",
           "move": "11,9",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES. The list: \"11,9, 10,12, 12,12, 10,9, 12,9, 9,11, 10,11,"
+          "response": "11,9"
         },
         {
           "player": "ai",
@@ -976,7 +866,7 @@
           "player": "llm",
           "color": "black",
           "move": "10,8",
-          "response": "We need to output exactly one coordinate from LEGAL_MOVES list. The list: \"10,8, 13,11, 12,8, 10,11, 12,11, 9,9, 10,9,"
+          "response": "10,8"
         },
         {
           "player": "ai",

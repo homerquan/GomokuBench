@@ -257,7 +257,8 @@ def run_benchmark(args, progress_callback=None, start_callback=None):
 
 def save_report(model_name, report):
     BENCHMARK_DIR.mkdir(parents=True, exist_ok=True)
-    output_path = BENCHMARK_DIR / f"{model_name}.json"
+    safe_model_name = model_name.replace("/", "_")
+    output_path = BENCHMARK_DIR / f"{safe_model_name}.json"
     with output_path.open("w", encoding="utf-8") as handle:
         json.dump(report, handle, indent=2)
         handle.write("\n")

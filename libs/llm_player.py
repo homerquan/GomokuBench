@@ -93,67 +93,35 @@ class LLMPlayer:
             return (row, column), response_text
 
     def _chat(self, prompt, attempt=None):
-        headers = {"Content-Type": "application/json"}
+        if self.model_config.provider_id == "gemini":
+            return self._chat_gemini(prompt, attempt=attempt)
+
+        return self._chat_openai_compatible(prompt, attempt=attempt)
+
+    def _chat_openai_compatible(self, prompt, attempt=None):
         api_key = self.model_config.get_api_key()
+        headers = {"Content-Type": "application/json"}
         if api_key:
             headers["Authorization"] = f"Bearer {api_key}"
 
         payload = {
             "model": self.model_config.model_id,
             "messages": [
-                {
-                    "role": "system",
-                    "content": (
-                        "You are a Gomoku move-selection API in a benchmark match. "
-                        "Your task is to return one legal move, not an explanation. "
-                        "The user gives an exact LEGAL_MOVES list for the current turn. "
-                        "Choose exactly one coordinate from LEGAL_MOVES and output only that coordinate. "
-                        "Use x,y format with 1-based coordinates, for example 10,10. "
-                        "Do not analyze the board in your final answer. Do not mention occupied points. "
-                        "Do not resign, pass, stop, or say the game is already won or lost. "
-                        "Your entire reply must be only digits, then a comma, then digits."
-                    ),
-                },
+                {"role": "system", "content": move_system_prompt()},
                 {"role": "user", "content": prompt},
             ],
             "temperature": 0,
             "max_tokens": 64,
         }
         payload.update(self.model_config.extra_body)
-        data = json.dumps(payload).encode("utf-8")
         endpoint = f"{self.model_config.base_url}/chat/completions"
-        http_request = request.Request(
-            endpoint,
-            data=data,
-            headers=headers,
-            method="POST",
-        )
-
-        try:
-            with request.urlopen(http_request, timeout=self.timeout) as response:
-                response_body = response.read().decode("utf-8")
-        except error.HTTPError as exc:
-            detail = ""
-            if self.debug_http:
-                try:
-                    error_body = exc.read().decode("utf-8")
-                except Exception:
-                    error_body = "<failed to read response body>"
-                headers = dict(exc.headers.items()) if exc.headers else {}
-                detail = (
-                    f"\nHTTP status: {exc.code}"
-                    f"\nResponse headers: {json.dumps(headers, indent=2)}"
-                    f"\nResponse body: {error_body}"
-                )
-            raise LLMRequestError(f"Request to {endpoint} failed: {exc}{detail}") from exc
-        except (error.URLError, HTTPException, OSError) as exc:
-            raise LLMRequestError(f"Request to {endpoint} failed: {exc}") from exc
+        response_body = self._post_json(endpoint, headers, payload)
 
         try:
             response_payload = json.loads(response_body)
             message = response_payload["choices"][0]["message"]
             content = message.get("content", "")
-            reasoning = message.get("reasoning", "")
+            reasoning = message.get("reasoning") or response_payload["choices"][0].get("reasoning", "")
         except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
             raise LLMRequestError(f"Unexpected model response: {response_body}") from exc
 
@@ -165,18 +133,78 @@ class LLMPlayer:
             reasoning=reasoning,
         )
 
-        if isinstance(content, list):
-            content = "".join(
-                item.get("text", "")
-                for item in content
-                if isinstance(item, dict)
-            )
+        return normalize_response_content(content, reasoning)
 
-        content = str(content).strip()
-        if content:
-            return content
+    def _chat_gemini(self, prompt, attempt=None):
+        api_key = self.model_config.get_api_key()
+        headers = {"Content-Type": "application/json"}
+        if api_key:
+            headers["x-goog-api-key"] = api_key
 
-        return str(reasoning).strip()
+        payload = {
+            "contents": [
+                {
+                    "parts": [
+                        {
+                            "text": f"{move_system_prompt()}\n{prompt}",
+                        }
+                    ]
+                }
+            ],
+            "generationConfig": {
+                "temperature": 0,
+                "maxOutputTokens": 64,
+            },
+        }
+        payload.update(self.model_config.extra_body)
+        endpoint = f"{self.model_config.base_url}/models/{self.model_config.model_id}:generateContent"
+        response_body = self._post_json(endpoint, headers, payload)
+
+        try:
+            response_payload = json.loads(response_body)
+            content = response_payload["candidates"][0]["content"]["parts"][0]["text"]
+            reasoning = ""
+        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
+            raise LLMRequestError(f"Unexpected model response: {response_body}") from exc
+
+        self._log_raw_response(
+            prompt=prompt,
+            attempt=attempt,
+            response_body=response_body,
+            message={"content": content},
+            reasoning=reasoning,
+        )
+
+        return normalize_response_content(content, reasoning)
+
+    def _post_json(self, endpoint, headers, payload):
+        data = json.dumps(payload).encode("utf-8")
+        http_request = request.Request(
+            endpoint,
+            data=data,
+            headers=headers,
+            method="POST",
+        )
+
+        try:
+            with request.urlopen(http_request, timeout=self.timeout) as response:
+                return response.read().decode("utf-8")
+        except error.HTTPError as exc:
+            detail = ""
+            if self.debug_http:
+                try:
+                    error_body = exc.read().decode("utf-8")
+                except Exception:
+                    error_body = "<failed to read response body>"
+                response_headers = dict(exc.headers.items()) if exc.headers else {}
+                detail = (
+                    f"\nHTTP status: {exc.code}"
+                    f"\nResponse headers: {json.dumps(response_headers, indent=2)}"
+                    f"\nResponse body: {error_body}"
+                )
+            raise LLMRequestError(f"Request to {endpoint} failed: {exc}{detail}") from exc
+        except (error.URLError, HTTPException, OSError) as exc:
+            raise LLMRequestError(f"Request to {endpoint} failed: {exc}") from exc
 
     def _log_raw_response(self, prompt, attempt, response_body, message, reasoning):
         if not self.reasoning_log_path:
@@ -194,6 +222,34 @@ class LLMPlayer:
         with self.reasoning_log_path.open("a", encoding="utf-8") as handle:
             json.dump(log_entry, handle, ensure_ascii=False)
             handle.write("\n")
+
+
+def move_system_prompt():
+    return (
+        "You are a Gomoku move-selection API in a benchmark match. "
+        "Your task is to return one legal move, not an explanation. "
+        "The user gives an exact LEGAL_MOVES list for the current turn. "
+        "Choose exactly one coordinate from LEGAL_MOVES and output only that coordinate. "
+        "Use x,y format with 1-based coordinates, for example 10,10. "
+        "Do not analyze the board in your final answer. Do not mention occupied points. "
+        "Do not resign, pass, stop, or say the game is already won or lost. "
+        "Your entire reply must be only digits, then a comma, then digits."
+    )
+
+
+def normalize_response_content(content, reasoning=""):
+    if isinstance(content, list):
+        content = "".join(
+            item.get("text", "")
+            for item in content
+            if isinstance(item, dict)
+        )
+
+    content = str(content).strip()
+    if content:
+        return content
+
+    return str(reasoning).strip()
 
 
 def build_move_prompt(game, llm_color, attempt, last_error):

@@ -5,7 +5,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Gemini OpenAI-Compatible",
       "options": {
-        "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai",
+        "baseURL": "https://generativelanguage.googleapis.com/v1beta",
         "apiKeyEnv": "GEMINI_API_KEY"
       },
       "models": {
