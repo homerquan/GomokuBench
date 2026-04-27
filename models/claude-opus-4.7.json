@@ -9,9 +9,9 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash Preview (OpenRouter)",
-          "model": "google/gemini-3-flash-preview",
+        "claude-opus-4.7": {
+          "name": "Claude Opus 4.7 (OpenRouter)",
+          "model": "anthropic/claude-opus-4.7",
           "tools": true,
           "extra_body": {
             "reasoning": {

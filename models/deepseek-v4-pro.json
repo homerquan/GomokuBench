@@ -9,9 +9,9 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash Preview (OpenRouter)",
-          "model": "google/gemini-3-flash-preview",
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro (OpenRouter)",
+          "model": "deepseek/deepseek-v4-pro",
           "tools": true,
           "extra_body": {
             "reasoning": {

@@ -9,9 +9,9 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash Preview (OpenRouter)",
-          "model": "google/gemini-3-flash-preview",
+        "grok-4.1-fast": {
+          "name": "Grok 4.1 Fast (OpenRouter)",
+          "model": "x-ai/grok-4.1-fast",
           "tools": true,
           "extra_body": {
             "reasoning": {

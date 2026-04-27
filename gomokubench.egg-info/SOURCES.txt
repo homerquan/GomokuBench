@@ -25,7 +25,8 @@ libs/report.py
 models/deepseek-v4-pro-together.json
 models/gemini-3-flash-preview.json
 models/gemma4:latest.json
-models/gpt-5-mini.json
 models/gpt-5.5-pro-openrouter.json
 models/kimi-k2.6-novita.json
+models/mistral-small-2603.json
 models/nemotron-3-super.json
+models/qwen3.6-flash.json

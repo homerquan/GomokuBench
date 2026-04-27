@@ -9,9 +9,9 @@
         "apiKeyEnv": "OPENROUTER_API_KEY"
       },
       "models": {
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash Preview (OpenRouter)",
-          "model": "google/gemini-3-flash-preview",
+        "mistral-small-2603": {
+          "name": "Mistral Small 2603 (OpenRouter)",
+          "model": "mistralai/mistral-small-2603",
           "tools": true,
           "extra_body": {
             "reasoning": {

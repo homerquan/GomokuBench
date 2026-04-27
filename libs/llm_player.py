@@ -93,9 +93,6 @@ class LLMPlayer:
             return (row, column), response_text
 
     def _chat(self, prompt, attempt=None):
-        if self.model_config.provider_id == "gemini":
-            return self._chat_gemini(prompt, attempt=attempt)
-
         return self._chat_openai_compatible(prompt, attempt=attempt)
 
     def _chat_openai_compatible(self, prompt, attempt=None):
@@ -111,7 +108,7 @@ class LLMPlayer:
                 {"role": "user", "content": prompt},
             ],
             "temperature": 0,
-            "max_tokens": 64,
+            "max_tokens": 1024,
         }
         payload.update(self.model_config.extra_body)
         endpoint = f"{self.model_config.base_url}/chat/completions"
@@ -130,48 +127,6 @@ class LLMPlayer:
             attempt=attempt,
             response_body=response_body,
             message=message,
-            reasoning=reasoning,
-        )
-
-        return normalize_response_content(content, reasoning)
-
-    def _chat_gemini(self, prompt, attempt=None):
-        api_key = self.model_config.get_api_key()
-        headers = {"Content-Type": "application/json"}
-        if api_key:
-            headers["x-goog-api-key"] = api_key
-
-        payload = {
-            "contents": [
-                {
-                    "parts": [
-                        {
-                            "text": f"{move_system_prompt()}\n{prompt}",
-                        }
-                    ]
-                }
-            ],
-            "generationConfig": {
-                "temperature": 0,
-                "maxOutputTokens": 64,
-            },
-        }
-        payload.update(self.model_config.extra_body)
-        endpoint = f"{self.model_config.base_url}/models/{self.model_config.model_id}:generateContent"
-        response_body = self._post_json(endpoint, headers, payload)
-
-        try:
-            response_payload = json.loads(response_body)
-            content = response_payload["candidates"][0]["content"]["parts"][0]["text"]
-            reasoning = ""
-        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
-            raise LLMRequestError(f"Unexpected model response: {response_body}") from exc
-
-        self._log_raw_response(
-            prompt=prompt,
-            attempt=attempt,
-            response_body=response_body,
-            message={"content": content},
             reasoning=reasoning,
         )
 
@@ -226,18 +181,22 @@ class LLMPlayer:
 
 def move_system_prompt():
     return (
-        "You are a Gomoku move-selection API in a benchmark match. "
-        "Your task is to return one legal move, not an explanation. "
-        "The user gives an exact LEGAL_MOVES list for the current turn. "
-        "Choose exactly one coordinate from LEGAL_MOVES and output only that coordinate. "
-        "Use x,y format with 1-based coordinates, for example 10,10. "
-        "Do not analyze the board in your final answer. Do not mention occupied points. "
-        "Do not resign, pass, stop, or say the game is already won or lost. "
-        "Your entire reply must be only digits, then a comma, then digits."
+        "You are an expert Gomoku player participating in a benchmark match "
+        "against a deterministic alpha-beta engine. Read the rules and board "
+        "state carefully, then choose one legal move. Your reply must start "
+        "with a legal move in x,y format using 1-based coordinates, for example "
+        "10,10. Valid examples: 10,10 or 3,14. Invalid examples: (10,10), x=10 y=10, "
+        "row 10 column 10, or any sentence before the move. Do not put any text before the move. "
+        "You must always make a legal move while the game is still active. Do not resign, pass, "
+        "stop, concede, or only explain that the position is already won or lost; even if the result looks "
+        "forced or defeat is unavoidable, choose a legal move that lets the game continue to its actual terminal state."
     )
 
 
 def normalize_response_content(content, reasoning=""):
+    if content is None:
+        content = ""
+
     if isinstance(content, list):
         content = "".join(
             item.get("text", "")
@@ -259,16 +218,23 @@ def build_move_prompt(game, llm_color, attempt, last_error):
     legal_move_text = ", ".join(legal_moves)
 
     prompt_lines = [
-        "Return exactly one Gomoku move.",
+        "You are taking the next turn in an active Gomoku game.",
         f"Your color: {color_name}.",
         f"Opponent color: {opponent_name}.",
         f"Board size: {game.size}x{game.size}.",
         "Coordinate format: x,y where x is the column and y is the row, both 1-based.",
+        "Goal: choose the strongest legal move for your side right now.",
         COMPACT_RULE_CONTEXT,
         "Critical instruction: trust the LEGAL_MOVES list below. Do not recalculate whether a listed move is empty.",
-        "Your entire response must be one coordinate copied exactly from LEGAL_MOVES.",
-        "No words. No punctuation except the comma. No reasoning. No markdown. No newline explanation.",
-        "The game is active; you must make a move even if the result looks forced.",
+        "The game is not over yet. You must make a legal move to finish the game on the board.",
+        "Never resign, pass, stop playing, concede, or answer only that the game is already won or lost.",
+        "Even if you believe a win or loss is forced, still output one legal move and continue the game.",
+        "Important response rule: the first characters of your reply must be exactly one legal move such as 10,10.",
+        "Output format rule: write only digits, then a comma, then digits at the start of your reply.",
+        "Valid examples: 10,10 and 3,14.",
+        "Invalid examples: (10,10), x=10,y=10, row 10 column 10, Move: 10,10, or any explanation before the move.",
+        "You may add short reasoning after the move if you want, but the move must come first.",
+        "Finish every turn until the benchmark game engine reports the final result.",
     ]
 
     if legal_moves:
@@ -308,7 +274,8 @@ def build_move_prompt(game, llm_color, attempt, last_error):
                 f"Previous attempt {attempt - 1} was rejected.",
                 f"Reason: {last_error}",
                 f"Do not repeat the rejected move. Choose one exact coordinate from LEGAL_MOVES: {legal_move_text}",
-                "Reply with only that coordinate.",
+                "Try again and start your reply with one legal x,y move.",
+                "Reminder: the first characters must look exactly like 10,10 with no words or punctuation before it.",
             ]
         )
 

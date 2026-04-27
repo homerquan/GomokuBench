@@ -44,12 +44,19 @@ include-package-data = false
 
 [tool.setuptools.data-files]
 "models" = [
+  "models/claude-opus-4.7.json",
+  "models/deepseek-v4-pro.json",
   "models/deepseek-v4-pro-together.json",
   "models/gemini-3-flash-preview.json",
   "models/gemma4:latest.json",
+  "models/gpt-5.5.json",
   "models/gpt-5-mini.json",
   "models/gpt-5.5-pro-openrouter.json",
+  "models/grok-4.1-fast.json",
+  "models/kimi-k2.6.json",
   "models/kimi-k2.6-novita.json",
+  "models/mistral-small-2603.json",
   "models/nemotron-3-super.json",
+  "models/qwen3.6-flash.json",
 ]
 "" = ["rule.md"]
