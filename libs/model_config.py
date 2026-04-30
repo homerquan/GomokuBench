@@ -29,6 +29,7 @@ class ModelConfig:
     base_url: str
     tools_enabled: bool
     api_key_env: Optional[str]
+    rate_limit_rpm: int
     extra_body: Dict[str, object]
 
     def get_api_key(self):
@@ -46,7 +47,7 @@ class ModelConfig:
 
 
 def load_dotenv_value(key):
-    env_candidates = [Path.cwd() / ".env"]
+    env_candidates = [Path.cwd() / ".env.local", Path.cwd() / ".env"]
     env_candidates.extend(prefix_root / ".env" for prefix_root in PREFIX_CANDIDATES)
     env_candidates.append(ENV_PATH)
 
@@ -110,6 +111,14 @@ def load_model_config(model_name=None, model_file=None):
     if not base_url:
         raise ValueError(f"Model config {path} is missing provider.options.baseURL")
 
+    rate_limit_rpm = model_config.get("rate_limit_rpm", 50)
+    try:
+        rate_limit_rpm = int(rate_limit_rpm)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"Model config {path} has invalid rate_limit_rpm") from exc
+    if rate_limit_rpm <= 0:
+        raise ValueError(f"Model config {path} rate_limit_rpm must be positive")
+
     return ModelConfig(
         config_name=resolved_model_name,
         model_id=model_config.get("model", resolved_model_name),
@@ -119,6 +128,7 @@ def load_model_config(model_name=None, model_file=None):
         base_url=base_url.rstrip("/"),
         tools_enabled=bool(model_config.get("tools", False)),
         api_key_env=provider_config.get("options", {}).get("apiKeyEnv"),
+        rate_limit_rpm=rate_limit_rpm,
         extra_body=dict(model_config.get("extra_body", {})),
     )
 

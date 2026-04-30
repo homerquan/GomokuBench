@@ -35,6 +35,7 @@ models/hy3-preview.json
 models/kimi-k2.6.json
 models/ling-2.6-1t.json
 models/minimax-m2.5.json
+models/mistral-medium-3.5-128b-nvidia-api.json
 models/mistral-small-2603.json
 models/nemotron-3-super.json
 models/qwen3.6-flash.json

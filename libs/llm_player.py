@@ -2,6 +2,8 @@ import json
 import re
 import sys
 import sysconfig
+import threading
+import time
 from http.client import HTTPException
 from pathlib import Path
 from urllib import error, request
@@ -62,12 +64,48 @@ class LLMRequestError(LLMMoveError):
     pass
 
 
+class RequestRateLimiter:
+    def __init__(self, requests_per_minute):
+        self.interval = 60.0 / requests_per_minute
+        self.next_request_at = 0.0
+        self.lock = threading.Lock()
+
+    def wait(self):
+        with self.lock:
+            now = time.monotonic()
+            delay = max(0.0, self.next_request_at - now)
+            self.next_request_at = max(now, self.next_request_at) + self.interval
+
+        if delay > 0:
+            time.sleep(delay)
+
+
+_RATE_LIMITERS = {}
+_RATE_LIMITERS_LOCK = threading.Lock()
+
+
+def rate_limiter_for(model_config):
+    key = (
+        model_config.provider_id,
+        model_config.base_url,
+        model_config.model_id,
+        model_config.rate_limit_rpm,
+    )
+    with _RATE_LIMITERS_LOCK:
+        limiter = _RATE_LIMITERS.get(key)
+        if limiter is None:
+            limiter = RequestRateLimiter(model_config.rate_limit_rpm)
+            _RATE_LIMITERS[key] = limiter
+        return limiter
+
+
 class LLMPlayer:
     def __init__(self, model_config, timeout=60, debug_http=False, reasoning_log_path=None):
         self.model_config = model_config
         self.timeout = timeout
         self.debug_http = debug_http
         self.reasoning_log_path = Path(reasoning_log_path) if reasoning_log_path else None
+        self.rate_limiter = rate_limiter_for(model_config)
 
     def choose_move(self, game, llm_color):
         last_error = None
@@ -111,16 +149,14 @@ class LLMPlayer:
             "max_tokens": 1024,
         }
         payload.update(self.model_config.extra_body)
+        stream_response = bool(payload.get("stream", False))
+        headers["Accept"] = "text/event-stream" if stream_response else "application/json"
         endpoint = f"{self.model_config.base_url}/chat/completions"
+        self.rate_limiter.wait()
         response_body = self._post_json(endpoint, headers, payload)
 
-        try:
-            response_payload = json.loads(response_body)
-            message = response_payload["choices"][0]["message"]
-            content = message.get("content", "")
-            reasoning = message.get("reasoning") or response_payload["choices"][0].get("reasoning", "")
-        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
-            raise LLMRequestError(f"Unexpected model response: {response_body}") from exc
+        message, reasoning = parse_chat_response(response_body, stream_response)
+        content = message.get("content", "")
 
         self._log_raw_response(
             prompt=prompt,
@@ -209,6 +245,78 @@ def normalize_response_content(content, reasoning=""):
         return content
 
     return str(reasoning).strip()
+
+
+def parse_chat_response(response_body, stream_response=False):
+    if stream_response:
+        return parse_streaming_chat_response(response_body)
+
+    try:
+        response_payload = json.loads(response_body)
+        message = response_payload["choices"][0]["message"]
+        reasoning = message.get("reasoning") or response_payload["choices"][0].get("reasoning", "")
+        return message, reasoning
+    except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
+        raise LLMRequestError(f"Unexpected model response: {response_body}") from exc
+
+
+def parse_streaming_chat_response(response_body):
+    content_parts = []
+    reasoning_parts = []
+
+    for raw_line in response_body.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith(":"):
+            continue
+        if not line.startswith("data:"):
+            continue
+
+        data = line[len("data:"):].strip()
+        if data == "[DONE]":
+            break
+
+        try:
+            chunk = json.loads(data)
+        except json.JSONDecodeError as exc:
+            raise LLMRequestError(f"Unexpected streaming model response: {response_body}") from exc
+
+        choices = chunk.get("choices") or []
+        if not choices:
+            continue
+
+        choice = choices[0]
+        delta = choice.get("delta") or choice.get("message") or {}
+        if isinstance(delta, dict):
+            append_content_piece(content_parts, delta.get("content"))
+            append_content_piece(
+                reasoning_parts,
+                delta.get("reasoning") or delta.get("reasoning_content"),
+            )
+
+        append_content_piece(content_parts, choice.get("text"))
+        append_content_piece(
+            reasoning_parts,
+            choice.get("reasoning") or choice.get("reasoning_content"),
+        )
+
+    message = {"content": "".join(content_parts)}
+    reasoning = "".join(reasoning_parts)
+    return message, reasoning
+
+
+def append_content_piece(parts, piece_value):
+    if piece_value is None:
+        return
+
+    if isinstance(piece_value, list):
+        for item in piece_value:
+            if isinstance(item, dict):
+                append_content_piece(parts, item.get("text"))
+            else:
+                append_content_piece(parts, item)
+        return
+
+    parts.append(str(piece_value))
 
 
 def build_move_prompt(game, llm_color, attempt, last_error):
