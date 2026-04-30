@@ -100,9 +100,9 @@ def rate_limiter_for(model_config):
 
 
 class LLMPlayer:
-    def __init__(self, model_config, timeout=60, debug_http=False, reasoning_log_path=None):
+    def __init__(self, model_config, timeout=None, debug_http=False, reasoning_log_path=None):
         self.model_config = model_config
-        self.timeout = timeout
+        self.timeout = timeout if timeout is not None else model_config.timeout_seconds
         self.debug_http = debug_http
         self.reasoning_log_path = Path(reasoning_log_path) if reasoning_log_path else None
         self.rate_limiter = rate_limiter_for(model_config)

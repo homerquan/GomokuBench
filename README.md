@@ -217,7 +217,8 @@ hardcoded key is used as a fallback.
 
 Model configs can set `rate_limit_rpm` on an individual model to pace API calls. If it is
 omitted, GomokuBench defaults to 50 requests per minute. Streaming OpenAI-compatible
-responses are supported by setting `"stream": true` in `extra_body`.
+responses are supported by setting `"stream": true` in `extra_body`. API call timeouts can
+be set with `timeout_seconds` or `timeout`; if omitted, GomokuBench defaults to 120 seconds.
 
 In general, to add a model:
 
@@ -227,5 +228,6 @@ In general, to add a model:
 - set the remote `model` name
 - add any required API key env var to `.env` or export it directly in your terminal
 - optionally set `rate_limit_rpm` if the provider has a lower request-per-minute limit
+- optionally set `timeout_seconds` if the provider needs more time to respond
 
 Examples in this repo include Ollama-compatible, Hugging Face Router, and OpenRouter model configs.

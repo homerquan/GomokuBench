@@ -31,6 +31,7 @@ class ModelConfig:
     api_key_env: Optional[str]
     api_key: Optional[str]
     rate_limit_rpm: int
+    timeout_seconds: int
     extra_body: Dict[str, object]
 
     def get_api_key(self):
@@ -125,6 +126,14 @@ def load_model_config(model_name=None, model_file=None):
     if rate_limit_rpm <= 0:
         raise ValueError(f"Model config {path} rate_limit_rpm must be positive")
 
+    timeout_seconds = model_config.get("timeout_seconds", model_config.get("timeout", 120))
+    try:
+        timeout_seconds = int(timeout_seconds)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"Model config {path} has invalid timeout_seconds") from exc
+    if timeout_seconds <= 0:
+        raise ValueError(f"Model config {path} timeout_seconds must be positive")
+
     return ModelConfig(
         config_name=resolved_model_name,
         model_id=model_config.get("model", resolved_model_name),
@@ -136,6 +145,7 @@ def load_model_config(model_name=None, model_file=None):
         api_key_env=provider_options.get("apiKeyEnv"),
         api_key=provider_options.get("apiKey") or provider_options.get("api_key"),
         rate_limit_rpm=rate_limit_rpm,
+        timeout_seconds=timeout_seconds,
         extra_body=dict(model_config.get("extra_body", {})),
     )
 

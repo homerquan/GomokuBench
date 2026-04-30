@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gomokubench"
-version = "0.1.9"
+version = "0.1.10"
 description = "A reproducible Gomoku benchmark for search-vs-LLM and LLM-vs-LLM dual play."
 readme = "README.md"
 requires-python = ">=3.9"
