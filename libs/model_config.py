@@ -29,19 +29,24 @@ class ModelConfig:
     base_url: str
     tools_enabled: bool
     api_key_env: Optional[str]
+    api_key: Optional[str]
     rate_limit_rpm: int
     extra_body: Dict[str, object]
 
     def get_api_key(self):
-        if not self.api_key_env:
-            return None
+        api_key = None
+        if self.api_key_env:
+            api_key = os.environ.get(self.api_key_env)
+            if not api_key:
+                api_key = load_dotenv_value(self.api_key_env)
 
-        api_key = os.environ.get(self.api_key_env)
         if not api_key:
-            api_key = load_dotenv_value(self.api_key_env)
-        if not api_key:
+            api_key = self.api_key
+
+        if not api_key and self.api_key_env:
             raise ValueError(
-                f"Model {self.config_name} requires environment variable {self.api_key_env}."
+                f"Model {self.config_name} requires environment variable {self.api_key_env} "
+                "or provider.options.apiKey."
             )
         return api_key
 
@@ -107,7 +112,8 @@ def load_model_config(model_name=None, model_file=None):
     providers = raw_config.get("provider", {})
     selected_model = find_model_config(providers, model_name, path)
     provider_id, provider_config, resolved_model_name, model_config = selected_model
-    base_url = provider_config.get("options", {}).get("baseURL")
+    provider_options = provider_config.get("options", {})
+    base_url = provider_options.get("baseURL")
     if not base_url:
         raise ValueError(f"Model config {path} is missing provider.options.baseURL")
 
@@ -127,7 +133,8 @@ def load_model_config(model_name=None, model_file=None):
         provider_name=provider_config.get("name", provider_id),
         base_url=base_url.rstrip("/"),
         tools_enabled=bool(model_config.get("tools", False)),
-        api_key_env=provider_config.get("options", {}).get("apiKeyEnv"),
+        api_key_env=provider_options.get("apiKeyEnv"),
+        api_key=provider_options.get("apiKey") or provider_options.get("api_key"),
         rate_limit_rpm=rate_limit_rpm,
         extra_body=dict(model_config.get("extra_body", {})),
     )

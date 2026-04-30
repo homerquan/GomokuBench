@@ -19,7 +19,7 @@
             "max_tokens": 16384,
             "temperature": 0.7,
             "top_p": 1.0,
-            "stream": true
+            "stream": false
           }
         }
       }

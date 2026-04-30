@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: gomokubench
-Version: 0.1.8
+Version: 0.1.9
 Summary: A reproducible Gomoku benchmark for search-vs-LLM and LLM-vs-LLM dual play.
 Author: Homer Quan
 License-Expression: MIT
@@ -218,7 +218,8 @@ See the [models folder on GitHub](https://github.com/homerquan/GomokuBench/tree/
 
 ### API Keys and Environment Variables
 
-For models requiring authentication, set the necessary API key in your environment.
+For models requiring authentication, set the necessary API key in your environment or in
+the provider options.
 
 If you are using OpenRouter, you will need an `OPENROUTER_API_KEY`. You can obtain your API key by signing up at [https://openrouter.ai](https://openrouter.ai).
 
@@ -235,6 +236,13 @@ OPENROUTER_API_KEY=your_actual_api_key_here
 ```
 
 The benchmark will look for this environment variable when running models configured to use it.
+Provider configs can also use a hardcoded `apiKey` or `api_key` value under `options`.
+If both `apiKeyEnv` and `apiKey` are present, the environment variable wins and the
+hardcoded key is used as a fallback.
+
+Model configs can set `rate_limit_rpm` on an individual model to pace API calls. If it is
+omitted, GomokuBench defaults to 50 requests per minute. Streaming OpenAI-compatible
+responses are supported by setting `"stream": true` in `extra_body`.
 
 In general, to add a model:
 
@@ -243,5 +251,6 @@ In general, to add a model:
 - point it at an OpenAI-compatible `baseURL`
 - set the remote `model` name
 - add any required API key env var to `.env` or export it directly in your terminal
+- optionally set `rate_limit_rpm` if the provider has a lower request-per-minute limit
 
 Examples in this repo include Ollama-compatible, Hugging Face Router, and OpenRouter model configs.
