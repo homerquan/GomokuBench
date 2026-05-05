@@ -35,6 +35,7 @@ As of `2026.4.27`, every model listed below is still down `10:0` against the bui
 | nemotron3-omini | 0 | 10 | 0 | 0 | 5.4 | 1.08 |
 | gemma4:latest | 0 | 10 | 0 | 0 | 5.0 | 1.0 |
 | Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
+| Mistral Medium 3.5 128B (NVIDIA, Fast) | 0 | 10 | 0 | 0 | 4.7 | 0.94 |
 
 ## Quick Start
 

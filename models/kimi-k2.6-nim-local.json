@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "nvidia-nim-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA NIM Local",
+      "options": {
+        "baseURL": "http://localhost:8000/v1"
+      },
+      "models": {
+        "kimi-k2.6-nim-local": {
+          "name": "Kimi K2.6 (NIM Local)",
+          "model": "moonshotai/kimi-k2.6",
+          "tools": false,
+          "rate_limit_rpm": 20,
+          "timeout_seconds": 600,
+          "extra_body": {
+            "max_tokens": 1024,
+            "temperature": 0
+          }
+        }
+      }
+    }
+  }
+}
