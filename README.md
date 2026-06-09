@@ -34,6 +34,7 @@ As of `2026.4.27`, every model listed below is still down `10:0` against the bui
 | Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
 | GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
 | nemotron3-omini | 0 | 10 | 0 | 0 | 5.4 | 1.08 |
+| gemma4:12b | 0 | 10 | 0 | 0 | 5.2 | 1.04 |
 | gemma4:latest | 0 | 10 | 0 | 0 | 5.0 | 1.0 |
 | Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
 | Mistral Medium 3.5 128B (NVIDIA, Fast) | 0 | 10 | 0 | 0 | 4.7 | 0.94 |
