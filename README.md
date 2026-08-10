@@ -31,7 +31,7 @@ As of `2026.4.27`, every model listed below is still down `10:0` against the bui
 |---|---:|---:|---:|---:|---:|---:|
 | 👑 GPT-5.5 (OpenRouter) | 0 | 10 | 0 | 0 | 9.2 | 1.84 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
-| Muse Glimmer 30B NVFP4 + DFlash | 0 | 10 | 0 | 7.8 | 1.56 |
+| Muse Glimmer 30B NVFP4 + DFlash | 0 | 10 | 0 | 0 | 7.8 | 1.56 |
 | Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
 | GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
 | nemotron3-omini | 0 | 10 | 0 | 0 | 5.4 | 1.08 |
