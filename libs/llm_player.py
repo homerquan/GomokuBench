@@ -253,8 +253,14 @@ def parse_chat_response(response_body, stream_response=False):
 
     try:
         response_payload = json.loads(response_body)
-        message = response_payload["choices"][0]["message"]
-        reasoning = message.get("reasoning") or response_payload["choices"][0].get("reasoning", "")
+        choice = response_payload["choices"][0]
+        message = choice["message"]
+        reasoning = (
+            message.get("reasoning")
+            or message.get("reasoning_content")
+            or choice.get("reasoning")
+            or choice.get("reasoning_content", "")
+        )
         return message, reasoning
     except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
         raise LLMRequestError(f"Unexpected model response: {response_body}") from exc

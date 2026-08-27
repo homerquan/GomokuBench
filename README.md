@@ -32,6 +32,7 @@ As of `2026.8.27`, these are the latest results from `python -m gomoku report` o
 | Nemotron 3.5 Lightning (Docker) | 0 | 1 | 0 | 0 | 9.0 | 1.8 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
 | Muse Glimmer 30B NVFP4 + DFlash on Spark | 0 | 10 | 0 | 0 | 7.8 | 1.56 |
+| Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
 | GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
 | Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
 | Mistral Medium 3.5 128B (NVIDIA, Fast) | 0 | 10 | 0 | 0 | 4.7 | 0.94 |
