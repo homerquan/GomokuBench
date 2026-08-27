@@ -30,7 +30,7 @@ As of `2026.8.27`, these are the latest results from `python -m gomoku report` o
 | Model | Wins | Losses | Draws | Avg Moves (Win) | Avg Moves (Loss) | Score |
 |---|---:|---:|---:|---:|---:|---:|
 | GPT-5.5 (OpenRouter) | 0 | 10 | 0 | 0 | 9.2 | 1.84 |
-| Nemotron 3.5 Lightning (Docker) | 0 | 1 | 0 | 0 | 9.0 | 1.8 |
+| Nemotron 3.5 Lightning (Docker) | 0 | 10 | 0 | 0 | 9.0 | 1.8 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
 | Muse Glimmer 30B NVFP4 + DFlash on Spark | 0 | 10 | 0 | 0 | 7.8 | 1.56 |
 | Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
