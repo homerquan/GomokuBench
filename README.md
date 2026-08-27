@@ -25,17 +25,14 @@ GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench)
 
 ## Current Leaderboard
 
-As of `2026.4.27`, every model listed below is still down `10:0` against the built-in AlphaBeta search engine.
+As of `2026.8.27`, these are the latest results from `python -m gomoku report` on the `benchmarks/` directory.
 
 | Model | Wins | Losses | Draws | Avg Moves (Win) | Avg Moves (Loss) | Score |
 |---|---:|---:|---:|---:|---:|---:|
-| 👑 GPT-5.5 (OpenRouter) | 0 | 10 | 0 | 0 | 9.2 | 1.84 |
+| Nemotron 3.5 Lightning (Docker) | 0 | 1 | 0 | 0 | 9.0 | 1.8 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
-| Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
+| Muse Glimmer 30B NVFP4 + DFlash on Spark | 0 | 10 | 0 | 0 | 7.8 | 1.56 |
 | GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
-| nemotron3-omini | 0 | 10 | 0 | 0 | 5.4 | 1.08 |
-| gemma4:12b | 0 | 10 | 0 | 0 | 5.2 | 1.04 |
-| gemma4:E4B | 0 | 10 | 0 | 0 | 5.0 | 1.0 |
 | Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
 | Mistral Medium 3.5 128B (NVIDIA, Fast) | 0 | 10 | 0 | 0 | 4.7 | 0.94 |
 
