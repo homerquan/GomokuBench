@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "gemini": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Gemini",
+      "options": {
+        "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai",
+        "apiKeyEnv": "GEMINI_API_KEY"
+      },
+      "models": {
+        "gemini-3.8-flash": {
+          "name": "Gemini 3.8 Flash",
+          "model": "gemini-3.8-flash",
+          "tools": true,
+          "timeout_seconds": 120,
+          "rate_limit_rpm": 60,
+          "extra_body": {
+            "max_tokens": 4096
+          }
+        }
+      }
+    }
+  }
+}

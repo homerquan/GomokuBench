@@ -29,6 +29,7 @@ As of `2026.8.27`, these are the latest results from `python -m gomoku report` o
 
 | Model | Wins | Losses | Draws | Avg Moves (Win) | Avg Moves (Loss) | Score |
 |---|---:|---:|---:|---:|---:|---:|
+| Gemini 3.8 Flash | 0 | 10 | 0 | 0 | 14.5 | 2.9 |
 | GPT-5.5 (OpenRouter) | 0 | 10 | 0 | 0 | 9.2 | 1.84 |
 | Nemotron 3.5 Lightning (Docker) | 0 | 10 | 0 | 0 | 9.0 | 1.8 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |

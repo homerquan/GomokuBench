@@ -1,0 +1,368 @@
+{
+  "model": "gemini-3.8-flash",
+  "model_name": "Gemini 3.8 Flash",
+  "provider": "Gemini",
+  "generated_at": "2026-09-03T21:53:00.235156+00:00",
+  "run_id": "e79d468ae0ae404eac07fca93a9c1d04",
+  "reasoning_log": "/tmp/gomokubench/e79d468ae0ae404eac07fca93a9c1d04.log",
+  "rounds": 2,
+  "board_size": 19,
+  "ai_level": "standard",
+  "summary": {
+    "llm_wins": 0,
+    "ai_wins": 2,
+    "draws": 0,
+    "ai_first_rounds": 1,
+    "llm_first_rounds": 1
+  },
+  "games": [
+    {
+      "round": 1,
+      "ai_first": true,
+      "llm_color": "white",
+      "ai_color": "black",
+      "outcome": "ai_win",
+      "winner": "black",
+      "termination_reason": "five_in_a_row",
+      "moves": [
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "10,9"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "10,10",
+          "response": "10,10"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "9,10"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "11,8",
+          "response": "11,8"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "9,8"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "9,9",
+          "response": "9,9"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,10"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "8,7",
+          "response": "8,7"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "8,8"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "10,8",
+          "response": "10,8"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,7"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "12,11",
+          "response": "12,11"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,12"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "10,11",
+          "response": "10,11"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,11"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "11,9",
+          "response": "11,9"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "11,13"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "11,14",
+          "response": "11,14"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "10,12"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "12,8",
+          "response": "12,8"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "9,11"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "13,7",
+          "response": "13,7"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "14,6"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "13,8",
+          "response": "13,8"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "14,8"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "8,10",
+          "response": "8,10"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "9,12"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "8,12",
+          "response": "8,12"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "9,13"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "9,14",
+          "response": "9,14"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "12,10"
+        },
+        {
+          "player": "llm",
+          "color": "white",
+          "move": "13,9",
+          "response": "13,9"
+        },
+        {
+          "player": "ai",
+          "color": "black",
+          "move": "8,14"
+        }
+      ],
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  O  .  .  X  .  O  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  X  X  O  O  O  O  X  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  .  O  X  O  .  O  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  O  X  O  X  X  .  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  X  O  X  O  .  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  O  X  X  X  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  .  X  .  X  .  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  .  X  O  .  O  .  .  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+    },
+    {
+      "round": 2,
+      "ai_first": false,
+      "llm_color": "black",
+      "ai_color": "white",
+      "outcome": "ai_win",
+      "winner": "white",
+      "termination_reason": "five_in_a_row",
+      "moves": [
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,10",
+          "response": "10,10"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "11,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,9",
+          "response": "10,9"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "10,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,8",
+          "response": "10,8"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "12,11"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,7",
+          "response": "10,7"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "10,6"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "9,11",
+          "response": "9,11"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "11,9"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "13,11",
+          "response": "13,11"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "11,10"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "11,8",
+          "response": "11,8"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "11,12"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "11,13",
+          "response": "11,13"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "9,10"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "8,9",
+          "response": "8,9"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "13,10"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "10,13",
+          "response": "10,13"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "12,13"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "13,14",
+          "response": "13,14"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "9,12"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "9,8",
+          "response": "9,8"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "8,13"
+        },
+        {
+          "player": "llm",
+          "color": "black",
+          "move": "12,9",
+          "response": "12,9"
+        },
+        {
+          "player": "ai",
+          "color": "white",
+          "move": "7,14"
+        }
+      ],
+      "final_board": "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 \n 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 2  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n 6  .  .  .  .  .  .  .  .  .  O  .  .  .  .  .  .  .  .  .  \n 7  .  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .  .  .  .  \n 8  .  .  .  .  .  .  .  .  X  X  X  .  .  .  .  .  .  .  .  \n 9  .  .  .  .  .  .  .  X  .  X  O  X  .  .  .  .  .  .  .  \n10  .  .  .  .  .  .  .  .  O  X  O  .  O  .  .  .  .  .  .  \n11  .  .  .  .  .  .  .  .  X  O  O  O  X  .  .  .  .  .  .  \n12  .  .  .  .  .  .  .  .  O  .  O  .  .  .  .  .  .  .  .  \n13  .  .  .  .  .  .  .  O  .  X  X  O  .  .  .  .  .  .  .  \n14  .  .  .  .  .  .  O  .  .  .  .  .  X  .  .  .  .  .  .  \n15  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n16  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n17  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n18  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  \n19  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  "
+    }
+  ]
+}

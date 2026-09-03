@@ -40,6 +40,9 @@ class ModelConfig:
             api_key = os.environ.get(self.api_key_env)
             if not api_key:
                 api_key = load_dotenv_value(self.api_key_env)
+            if not api_key and self.api_key_env in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+                alt_env = "GOOGLE_API_KEY" if self.api_key_env == "GEMINI_API_KEY" else "GEMINI_API_KEY"
+                api_key = os.environ.get(alt_env) or load_dotenv_value(alt_env)
 
         if not api_key:
             api_key = self.api_key
