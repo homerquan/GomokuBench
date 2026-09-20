@@ -25,7 +25,7 @@ GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench)
 
 ## Current Leaderboard
 
-As of `2026.8.27`, these are the latest results from `python -m gomoku report` on the `benchmarks/` directory.
+As of `2026.9.20`, these are the latest results from `python -m gomoku report` on the `benchmarks/` directory.
 
 | Model | Wins | Losses | Draws | Avg Moves (Win) | Avg Moves (Loss) | Score |
 |---|---:|---:|---:|---:|---:|---:|
@@ -34,6 +34,7 @@ As of `2026.8.27`, these are the latest results from `python -m gomoku report` o
 | Nemotron 3.5 Lightning (Docker) | 0 | 10 | 0 | 0 | 9.0 | 1.8 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
 | Muse Glimmer 30B NVFP4 + DFlash on Spark | 0 | 10 | 0 | 0 | 7.8 | 1.56 |
+| Bonsai 2 27B (llama.cpp Local) | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
 | Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
 | GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
 | Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
