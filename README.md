@@ -25,20 +25,29 @@ GitHub: [homerquan/GomokuBench](https://github.com/homerquan/GomokuBench)
 
 ## Current Leaderboard
 
-As of `2026.9.20`, these are the latest results from `python -m gomoku report` on the `benchmarks/` directory.
+As of `2026.10.16`, these are the latest results from `python -m gomoku report` on the `benchmarks/` directory.
+The four `(Free)` rows below are new 10-round OpenRouter free-tier runs from this session (`-r 10`, standard engine).
 
 | Model | Wins | Losses | Draws | Avg Moves (Win) | Avg Moves (Loss) | Score |
-|---|---:|---:|---:|---:|---:|---:|
-| Gemini 3.8 Flash | 0 | 10 | 0 | 0 | 14.5 | 2.9 |
-| GPT-5.5 (OpenRouter) | 0 | 10 | 0 | 0 | 9.2 | 1.84 |
-| Nemotron 3.5 Lightning (Docker) | 0 | 10 | 0 | 0 | 9.0 | 1.8 |
+|---|---|---|---|---|---|---|
+| Gemini 3.8 Flash | 0 | 2 | 0 | 0 | 14.5 | 2.9 |
+| Nemotron 3.5 Lightning (Docker) | 0 | 1 | 0 | 0 | 9.0 | 1.8 |
 | Nemotron 3 Super | 0 | 10 | 0 | 0 | 8.0 | 1.6 |
 | Muse Glimmer 30B NVFP4 + DFlash on Spark | 0 | 10 | 0 | 0 | 7.8 | 1.56 |
 | Bonsai 2 27B (llama.cpp Local) | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
-| Nemotron-Labs-Diffusion-14B | 0 | 10 | 0 | 0 | 7.1 | 1.42 |
 | GPT-OSS 120B (Free) | 0 | 10 | 0 | 0 | 7.0 | 1.4 |
+| LFM 2.5 2.6B (Free) | 0 | 10 | 0 | 0 | 6.7 | 1.34 |
+| Inkling Small (Free) | 0 | 10 | 0 | 0 | 6.3 | 1.26 |
+| Nemotron 3.5 Super VL (Free) | 0 | 10 | 0 | 0 | 6.2 | 1.24 |
+| Inkling (Free) | 0 | 10 | 0 | 0 | 4.9 | 0.98 |
 | Mistral Small 2603 (OpenRouter) | 0 | 10 | 0 | 0 | 4.8 | 0.96 |
 | Mistral Medium 3.5 128B (NVIDIA, Fast) | 0 | 10 | 0 | 0 | 4.7 | 0.94 |
+
+Notes on the requested free-model set (`nvidia/nemotron-3.5-super-vl:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`, `liquid/lfm-2.5-2.6b:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`):
+
+- Model configs are saved in `models/` (`inkling-free.json`, `inkling-small-free.json`, `lfm-2.5-2.6b-free.json`, `nemotron-3.5-super-vl-free.json`, `nemotron-3-ultra-550b-free.json`) and benchmark reports in `benchmarks/`.
+- `nvidia/nemotron-3-ultra-550b-a55b:free` could not be benchmarked: every request timed out on the provider side (HTTP 504 `A Timeout Occurred`, no benchmark file saved), even with a 600s client timeout and retries.
+- The Inkling free endpoints reject plain API calls (HTTP 403 `only available on agentic harnesses`); they work once `HTTP-Referer: https://opencode.ai` is sent, which this harness now does.
 
 ## Quick Start
 

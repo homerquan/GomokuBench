@@ -1,0 +1,19 @@
+{
+  "provider": {
+    "openrouter": {
+      "name": "OpenRouter",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKeyEnv": "OPENROUTER_API_KEY"
+      },
+      "models": {
+        "inkling-small-free": {
+          "name": "Inkling Small (Free)",
+          "model": "thinkingmachines/inkling-small:free",
+          "rate_limit_rpm": 10,
+          "timeout_seconds": 180
+        }
+      }
+    }
+  }
+}

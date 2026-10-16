@@ -1,0 +1,19 @@
+{
+  "provider": {
+    "openrouter": {
+      "name": "OpenRouter",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKeyEnv": "OPENROUTER_API_KEY"
+      },
+      "models": {
+        "nemotron-3.5-super-vl-free": {
+          "name": "Nemotron 3.5 Super VL (Free)",
+          "model": "nvidia/nemotron-3.5-super-vl:free",
+          "rate_limit_rpm": 10,
+          "timeout_seconds": 180
+        }
+      }
+    }
+  }
+}

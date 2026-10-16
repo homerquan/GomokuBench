@@ -1,0 +1,19 @@
+{
+  "provider": {
+    "openrouter": {
+      "name": "OpenRouter",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKeyEnv": "OPENROUTER_API_KEY"
+      },
+      "models": {
+        "lfm-2.5-2.6b-free": {
+          "name": "LFM 2.5 2.6B (Free)",
+          "model": "liquid/lfm-2.5-2.6b:free",
+          "rate_limit_rpm": 10,
+          "timeout_seconds": 180
+        }
+      }
+    }
+  }
+}
