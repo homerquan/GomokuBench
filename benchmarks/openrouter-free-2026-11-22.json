@@ -1,0 +1,1223 @@
+{
+  "kind": "openrouter_free_benchmark",
+  "updatedAt": "2026-11-22T21:47:36+00:00",
+  "startedAt": "2026-11-22T21:26:56+00:00",
+  "verifiedFreeResponses": 87,
+  "completedGames": 16,
+  "plannedGames": 22,
+  "ranking": [
+    {
+      "model": "NVIDIA: Nemotron 3.5 Lightning",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 8.0,
+      "score": 1.6,
+      "id": "nvidia/nemotron-3.5-lightning:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "NVIDIA: Nemotron 3.5 Lightning",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "12,10"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "11,9"
+            },
+            {
+              "color": "white",
+              "move": "9,11"
+            },
+            {
+              "color": "black",
+              "move": "10,11"
+            },
+            {
+              "color": "white",
+              "move": "10,9"
+            },
+            {
+              "color": "black",
+              "move": "10,8"
+            },
+            {
+              "color": "white",
+              "move": "9,7"
+            },
+            {
+              "color": "black",
+              "move": "13,11"
+            },
+            {
+              "color": "white",
+              "move": "14,12"
+            },
+            {
+              "color": "black",
+              "move": "13,12"
+            },
+            {
+              "color": "white",
+              "move": "9,8"
+            },
+            {
+              "color": "black",
+              "move": "13,10"
+            },
+            {
+              "color": "white",
+              "move": "8,7"
+            },
+            {
+              "color": "black",
+              "move": "13,9"
+            },
+            {
+              "color": "white",
+              "move": "7,6"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "NVIDIA: Nemotron 3.5 Lightning"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "9,11"
+            },
+            {
+              "color": "white",
+              "move": "8,10"
+            },
+            {
+              "color": "black",
+              "move": "9,9"
+            },
+            {
+              "color": "white",
+              "move": "9,10"
+            },
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "7,10"
+            },
+            {
+              "color": "black",
+              "move": "11,9"
+            },
+            {
+              "color": "white",
+              "move": "6,10"
+            },
+            {
+              "color": "black",
+              "move": "5,10"
+            },
+            {
+              "color": "white",
+              "move": "8,12"
+            },
+            {
+              "color": "black",
+              "move": "11,11"
+            },
+            {
+              "color": "white",
+              "move": "8,11"
+            },
+            {
+              "color": "black",
+              "move": "8,8"
+            },
+            {
+              "color": "white",
+              "move": "8,13"
+            },
+            {
+              "color": "black",
+              "move": "7,7"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "NVIDIA: Nemotron 3.5 Super VL",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 8.0,
+      "score": 1.6,
+      "id": "nvidia/nemotron-3.5-super-vl:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "NVIDIA: Nemotron 3.5 Super VL",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "12,10"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "11,9"
+            },
+            {
+              "color": "white",
+              "move": "9,11"
+            },
+            {
+              "color": "black",
+              "move": "10,8"
+            },
+            {
+              "color": "white",
+              "move": "9,7"
+            },
+            {
+              "color": "black",
+              "move": "13,11"
+            },
+            {
+              "color": "white",
+              "move": "14,12"
+            },
+            {
+              "color": "black",
+              "move": "10,9"
+            },
+            {
+              "color": "white",
+              "move": "10,11"
+            },
+            {
+              "color": "black",
+              "move": "10,7"
+            },
+            {
+              "color": "white",
+              "move": "10,6"
+            },
+            {
+              "color": "black",
+              "move": "7,8"
+            },
+            {
+              "color": "white",
+              "move": "8,11"
+            },
+            {
+              "color": "black",
+              "move": "8,9"
+            },
+            {
+              "color": "white",
+              "move": "12,11"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "NVIDIA: Nemotron 3.5 Super VL"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "11,10"
+            },
+            {
+              "color": "white",
+              "move": "10,9"
+            },
+            {
+              "color": "black",
+              "move": "11,8"
+            },
+            {
+              "color": "white",
+              "move": "12,8"
+            },
+            {
+              "color": "black",
+              "move": "11,9"
+            },
+            {
+              "color": "white",
+              "move": "11,7"
+            },
+            {
+              "color": "black",
+              "move": "10,6"
+            },
+            {
+              "color": "white",
+              "move": "11,6"
+            },
+            {
+              "color": "black",
+              "move": "11,5"
+            },
+            {
+              "color": "white",
+              "move": "12,5"
+            },
+            {
+              "color": "black",
+              "move": "9,7"
+            },
+            {
+              "color": "white",
+              "move": "6,7"
+            },
+            {
+              "color": "black",
+              "move": "12,4"
+            },
+            {
+              "color": "white",
+              "move": "13,4"
+            },
+            {
+              "color": "black",
+              "move": "13,3"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "NVIDIA: Nemotron 3 Nano Omni",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 7.5,
+      "score": 1.5,
+      "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "NVIDIA: Nemotron 3 Nano Omni",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "12,10"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "11,9"
+            },
+            {
+              "color": "white",
+              "move": "9,11"
+            },
+            {
+              "color": "black",
+              "move": "10,8"
+            },
+            {
+              "color": "white",
+              "move": "9,7"
+            },
+            {
+              "color": "black",
+              "move": "13,11"
+            },
+            {
+              "color": "white",
+              "move": "14,12"
+            },
+            {
+              "color": "black",
+              "move": "10,9"
+            },
+            {
+              "color": "white",
+              "move": "10,11"
+            },
+            {
+              "color": "black",
+              "move": "12,11"
+            },
+            {
+              "color": "white",
+              "move": "12,9"
+            },
+            {
+              "color": "black",
+              "move": "10,6"
+            },
+            {
+              "color": "white",
+              "move": "10,7"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "13,8"
+            },
+            {
+              "color": "black",
+              "move": "12,8"
+            },
+            {
+              "color": "white",
+              "move": "14,7"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "NVIDIA: Nemotron 3 Nano Omni"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,9"
+            },
+            {
+              "color": "white",
+              "move": "10,10"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "11,8"
+            },
+            {
+              "color": "black",
+              "move": "9,8"
+            },
+            {
+              "color": "white",
+              "move": "12,8"
+            },
+            {
+              "color": "black",
+              "move": "11,10"
+            },
+            {
+              "color": "white",
+              "move": "8,8"
+            },
+            {
+              "color": "black",
+              "move": "8,7"
+            },
+            {
+              "color": "white",
+              "move": "7,6"
+            },
+            {
+              "color": "black",
+              "move": "12,11"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "Baidu: ERNIE-5.5-Flash-Preview",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 6.5,
+      "score": 1.3,
+      "id": "baidu/ernie-5.5-flash-preview:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "Baidu: ERNIE-5.5-Flash-Preview",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "9,9"
+            },
+            {
+              "color": "white",
+              "move": "8,8"
+            },
+            {
+              "color": "black",
+              "move": "10,9"
+            },
+            {
+              "color": "white",
+              "move": "10,8"
+            },
+            {
+              "color": "black",
+              "move": "8,9"
+            },
+            {
+              "color": "white",
+              "move": "11,9"
+            },
+            {
+              "color": "black",
+              "move": "7,9"
+            },
+            {
+              "color": "white",
+              "move": "6,9"
+            },
+            {
+              "color": "black",
+              "move": "7,8"
+            },
+            {
+              "color": "white",
+              "move": "12,10"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "9,7"
+            },
+            {
+              "color": "black",
+              "move": "11,8"
+            },
+            {
+              "color": "white",
+              "move": "13,11"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "Baidu: ERNIE-5.5-Flash-Preview"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "9,9"
+            },
+            {
+              "color": "black",
+              "move": "8,9"
+            },
+            {
+              "color": "white",
+              "move": "7,8"
+            },
+            {
+              "color": "black",
+              "move": "7,10"
+            },
+            {
+              "color": "white",
+              "move": "7,7"
+            },
+            {
+              "color": "black",
+              "move": "9,8"
+            },
+            {
+              "color": "white",
+              "move": "7,6"
+            },
+            {
+              "color": "black",
+              "move": "10,7"
+            },
+            {
+              "color": "white",
+              "move": "7,5"
+            },
+            {
+              "color": "black",
+              "move": "11,6"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "Particle AI: Particle-1",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 6.0,
+      "score": 1.2,
+      "id": "particle-ai/particle-1:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "Particle AI: Particle-1",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "11,10"
+            },
+            {
+              "color": "white",
+              "move": "12,10"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "10,12"
+            },
+            {
+              "color": "black",
+              "move": "8,10"
+            },
+            {
+              "color": "white",
+              "move": "7,10"
+            },
+            {
+              "color": "black",
+              "move": "8,9"
+            },
+            {
+              "color": "white",
+              "move": "13,9"
+            },
+            {
+              "color": "black",
+              "move": "14,8"
+            },
+            {
+              "color": "white",
+              "move": "9,13"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "Particle AI: Particle-1"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "9,11"
+            },
+            {
+              "color": "white",
+              "move": "10,10"
+            },
+            {
+              "color": "black",
+              "move": "9,9"
+            },
+            {
+              "color": "white",
+              "move": "9,10"
+            },
+            {
+              "color": "black",
+              "move": "8,10"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "7,9"
+            },
+            {
+              "color": "white",
+              "move": "12,10"
+            },
+            {
+              "color": "black",
+              "move": "13,10"
+            },
+            {
+              "color": "white",
+              "move": "8,9"
+            },
+            {
+              "color": "black",
+              "move": "10,12"
+            },
+            {
+              "color": "white",
+              "move": "10,9"
+            },
+            {
+              "color": "black",
+              "move": "6,8"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "NVIDIA: Nemotron 3 Ultra",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 5.5,
+      "score": 1.1,
+      "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "NVIDIA: Nemotron 3 Ultra",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "11,10"
+            },
+            {
+              "color": "white",
+              "move": "12,10"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "10,12"
+            },
+            {
+              "color": "black",
+              "move": "8,10"
+            },
+            {
+              "color": "white",
+              "move": "7,10"
+            },
+            {
+              "color": "black",
+              "move": "10,11"
+            },
+            {
+              "color": "white",
+              "move": "13,9"
+            },
+            {
+              "color": "black",
+              "move": "10,13"
+            },
+            {
+              "color": "white",
+              "move": "14,8"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "NVIDIA: Nemotron 3 Ultra"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "11,11"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "9,9"
+            },
+            {
+              "color": "black",
+              "move": "9,11"
+            },
+            {
+              "color": "white",
+              "move": "9,8"
+            },
+            {
+              "color": "black",
+              "move": "11,9"
+            },
+            {
+              "color": "white",
+              "move": "9,7"
+            },
+            {
+              "color": "black",
+              "move": "12,8"
+            },
+            {
+              "color": "white",
+              "move": "13,8"
+            },
+            {
+              "color": "black",
+              "move": "13,7"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "LiquidAI: LFM3-1.7B",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 5.0,
+      "score": 1.0,
+      "id": "liquid/lfm-3-1.7b:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "LiquidAI: LFM3-1.7B",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "12,10"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "12,12"
+            },
+            {
+              "color": "white",
+              "move": "11,9"
+            },
+            {
+              "color": "black",
+              "move": "9,11"
+            },
+            {
+              "color": "white",
+              "move": "11,8"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "11,7"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "LiquidAI: LFM3-1.7B"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "10,10"
+            },
+            {
+              "color": "black",
+              "move": "10,9"
+            },
+            {
+              "color": "white",
+              "move": "11,8"
+            },
+            {
+              "color": "black",
+              "move": "9,8"
+            },
+            {
+              "color": "white",
+              "move": "8,9"
+            },
+            {
+              "color": "black",
+              "move": "8,7"
+            },
+            {
+              "color": "white",
+              "move": "7,8"
+            },
+            {
+              "color": "black",
+              "move": "7,6"
+            },
+            {
+              "color": "white",
+              "move": "8,8"
+            },
+            {
+              "color": "black",
+              "move": "6,5"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "Recursive: Flint",
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 4.5,
+      "score": 0.9,
+      "id": "recursive/flint-v1.0:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "complete",
+          "players": {
+            "black": "Recursive: Flint",
+            "white": "Alpha-Beta Oracle"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,10"
+            },
+            {
+              "color": "white",
+              "move": "11,11"
+            },
+            {
+              "color": "black",
+              "move": "12,10"
+            },
+            {
+              "color": "white",
+              "move": "11,10"
+            },
+            {
+              "color": "black",
+              "move": "10,2"
+            },
+            {
+              "color": "white",
+              "move": "11,9"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "11,8"
+            },
+            {
+              "color": "black",
+              "move": "10,8"
+            },
+            {
+              "color": "white",
+              "move": "11,7"
+            }
+          ],
+          "winner": "white",
+          "reason": "five"
+        },
+        {
+          "color": "white",
+          "status": "complete",
+          "players": {
+            "black": "Alpha-Beta Oracle",
+            "white": "Recursive: Flint"
+          },
+          "moves": [
+            {
+              "color": "black",
+              "move": "10,11"
+            },
+            {
+              "color": "white",
+              "move": "9,11"
+            },
+            {
+              "color": "black",
+              "move": "9,10"
+            },
+            {
+              "color": "white",
+              "move": "10,10"
+            },
+            {
+              "color": "black",
+              "move": "8,9"
+            },
+            {
+              "color": "white",
+              "move": "11,9"
+            },
+            {
+              "color": "black",
+              "move": "7,8"
+            },
+            {
+              "color": "white",
+              "move": "9,8"
+            },
+            {
+              "color": "black",
+              "move": "6,7"
+            }
+          ],
+          "winner": "black",
+          "reason": "five"
+        }
+      ],
+      "completedGames": 2
+    },
+    {
+      "model": "Google: Gemma 4 26B A4B",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 0,
+      "score": null,
+      "id": "google/gemma-4-26b-a4b-it:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "unavailable",
+          "reason": "Free provider rate limited"
+        },
+        {
+          "color": "white",
+          "status": "unavailable",
+          "reason": "Free provider rate limited"
+        }
+      ],
+      "completedGames": 0
+    },
+    {
+      "model": "Google: Gemma 4 31B",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 0,
+      "score": null,
+      "id": "google/gemma-4-31b-it:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "unavailable",
+          "reason": "Free provider rate limited"
+        },
+        {
+          "color": "white",
+          "status": "unavailable",
+          "reason": "Free provider rate limited"
+        }
+      ],
+      "completedGames": 0
+    },
+    {
+      "model": "inclusionAI: Ling 3.2 Flash",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0,
+      "avg_win_moves": 0,
+      "avg_loss_moves": 0,
+      "score": null,
+      "id": "inclusionai/ling-3.2-flash:free",
+      "games": [
+        {
+          "color": "black",
+          "status": "unavailable",
+          "reason": "Free provider rate limited"
+        },
+        {
+          "color": "white",
+          "status": "unavailable",
+          "reason": "Free provider rate limited"
+        }
+      ],
+      "completedGames": 0
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 GomokuBench is a lightweight benchmark for testing frontier LLMs against a search-powered Gomoku engine in a setting that is simple, adversarial, reproducible, and easy to inspect move by move. It also supports **dual mode**, where two LLMs play Gomoku against each other as Black and White with separate prompts, responses, and reasoning logs.
 
-[YouTube Demo](https://youtu.be/QbaC1Qbbno4)
+[YouTube Demo](https://youtu.be/QbaC1Qbbno4) · [Gomoku Arena on Hugging Face](https://huggingface.co/spaces/homerquan/gomoku-arena)
 
 It is built for AI companies, model builders, and researchers who want a fast way to answer a practical question:
 
@@ -48,6 +48,23 @@ Notes on the requested free-model set (`nvidia/nemotron-3.5-super-vl:free`, `thi
 - Model configs are saved in `models/` (`inkling-free.json`, `inkling-small-free.json`, `lfm-2.5-2.6b-free.json`, `nemotron-3.5-super-vl-free.json`, `nemotron-3-ultra-550b-free.json`) and benchmark reports in `benchmarks/`.
 - `nvidia/nemotron-3-ultra-550b-a55b:free` could not be benchmarked: every request timed out on the provider side (HTTP 504 `A Timeout Occurred`, no benchmark file saved), even with a 600s client timeout and retries.
 - The Inkling free endpoints reject plain API calls (HTTP 403 `only available on agentic harnesses`); they work once `HTTP-Referer: https://opencode.ai` is sent, which this harness now does.
+
+### OpenRouter free models against the Oracle
+
+On November 22, 2026, GomokuBench attempted one game as Black and one as White for each of 11 free OpenRouter chat models. The matches used the standard Alpha-Beta Oracle on the 19 × 19 freestyle board and $0 inference routes. Eight models completed both games. The Oracle won all 16 completed games.
+
+| Model | Wins | Losses | Draws | Avg model moves per loss | Benchmark score |
+|---|---:|---:|---:|---:|---:|
+| Nemotron 3.5 Lightning | 0 | 2 | 0 | 8.0 | 1.60 |
+| Nemotron 3.5 Super VL | 0 | 2 | 0 | 8.0 | 1.60 |
+| Nemotron 3 Nano Omni | 0 | 2 | 0 | 7.5 | 1.50 |
+| ERNIE-5.5-Flash-Preview | 0 | 2 | 0 | 6.5 | 1.30 |
+| Particle-1 | 0 | 2 | 0 | 6.0 | 1.20 |
+| Nemotron 3 Ultra | 0 | 2 | 0 | 5.5 | 1.10 |
+| LFM3-1.7B | 0 | 2 | 0 | 5.0 | 1.00 |
+| Flint | 0 | 2 | 0 | 4.5 | 0.90 |
+
+Ling 3.2 Flash, Gemma 4 26B A4B, and Gemma 4 31B remain unranked after repeated HTTP 429 responses on their free routes. [Results and move records](benchmarks/openrouter-free-2026-11-22.json)
 
 ## Quick Start
 

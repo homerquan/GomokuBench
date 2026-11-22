@@ -1,0 +1,131 @@
+[
+  {
+    "id": "smollm2-135m",
+    "name": "SmolLM2 135M",
+    "repo": "tensorblock/SmolLM2-135M-Instruct-GGUF",
+    "revision": "32db44d69cedb731dc0fc96f60e01a86c6f5919d",
+    "file": "SmolLM2-135M-Instruct-Q3_K_M.gguf",
+    "mb": 94
+  },
+  {
+    "id": "smollm2-360m",
+    "name": "SmolLM2 360M",
+    "repo": "HuggingFaceTB/SmolLM2-360M-Instruct-GGUF",
+    "revision": "593b5a2e04c8f3e4ee880263f93e0bd2901ad47f",
+    "file": "smollm2-360m-instruct-q8_0.gguf",
+    "mb": 387
+  },
+  {
+    "id": "smollm2-1.7b",
+    "name": "SmolLM2 1.7B",
+    "repo": "HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF",
+    "revision": "2d4a76a30b4af41ecd395c35725ac11688d4cfe4",
+    "file": "smollm2-1.7b-instruct-q4_k_m.gguf",
+    "mb": 1056
+  },
+  {
+    "id": "smollm-135m",
+    "name": "SmolLM 135M",
+    "repo": "tensorblock/SmolLM-135M-Instruct-GGUF",
+    "revision": "15aa41cd77e08254e0c65c26b3bdd5de2db3ebae",
+    "file": "SmolLM-135M-Instruct-Q3_K_M.gguf",
+    "mb": 94
+  },
+  {
+    "id": "smollm-360m",
+    "name": "SmolLM 360M",
+    "repo": "tensorblock/SmolLM-360M-Instruct-GGUF",
+    "revision": "8e5d03958c5d33db958abfdc3230c5168e307ab3",
+    "file": "SmolLM-360M-Instruct-Q2_K.gguf",
+    "mb": 219
+  },
+  {
+    "id": "qwen2.5-0.5b",
+    "name": "Qwen2.5 0.5B",
+    "repo": "Qwen/Qwen2.5-0.5B-Instruct-GGUF",
+    "revision": "9217f5db79a29953eb74d5343926648285ec7e67",
+    "file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "mb": 492
+  },
+  {
+    "id": "qwen2.5-1.5b",
+    "name": "Qwen2.5 1.5B",
+    "repo": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+    "revision": "91cad51170dc346986eccefdc2dd33a9da36ead9",
+    "file": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+    "mb": 1118
+  },
+  {
+    "id": "qwen2-0.5b",
+    "name": "Qwen2 0.5B",
+    "repo": "Qwen/Qwen2-0.5B-Instruct-GGUF",
+    "revision": "198f08841147e5196a6a69bd0053690fb1fd3857",
+    "file": "qwen2-0_5b-instruct-q4_k_m.gguf",
+    "mb": 398
+  },
+  {
+    "id": "qwen2-1.5b",
+    "name": "Qwen2 1.5B",
+    "repo": "Qwen/Qwen2-1.5B-Instruct-GGUF",
+    "revision": "c62434db644497c0ee545c690bb66a67eba6eb3f",
+    "file": "qwen2-1_5b-instruct-q4_k_m.gguf",
+    "mb": 987
+  },
+  {
+    "id": "qwen1.5-0.5b",
+    "name": "Qwen1.5 0.5B",
+    "repo": "Qwen/Qwen1.5-0.5B-Chat-GGUF",
+    "revision": "cfab082d2fef4a8736ef384dc764c2fb6887f387",
+    "file": "qwen1_5-0_5b-chat-q4_k_m.gguf",
+    "mb": 408
+  },
+  {
+    "id": "qwen-coder-0.5b",
+    "name": "Qwen2.5 Coder 0.5B",
+    "repo": "Qwen/Qwen2.5-Coder-0.5B-Instruct-GGUF",
+    "revision": "ebb2015119c907b064c512bf053e945850b5875f",
+    "file": "qwen2.5-coder-0.5b-instruct-q4_k_m.gguf",
+    "mb": 492
+  },
+  {
+    "id": "qwen-coder-1.5b",
+    "name": "Qwen2.5 Coder 1.5B",
+    "repo": "Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF",
+    "revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361",
+    "file": "qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
+    "mb": 1118
+  },
+  {
+    "id": "tinyllama-1.1b",
+    "name": "TinyLlama 1.1B",
+    "repo": "TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF",
+    "revision": "52e7645ba7c309695bec7ac98f4f005b139cf465",
+    "file": "tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+    "mb": 669,
+    "template": "zephyr"
+  },
+  {
+    "id": "lfm2-350m",
+    "name": "LFM2 350M",
+    "repo": "LiquidAI/LFM2-350M-GGUF",
+    "revision": "8fdc9d526b7ed346b19257551b05816c7912ecc2",
+    "file": "LFM2-350M-Q4_K_M.gguf",
+    "mb": 230
+  },
+  {
+    "id": "lfm2-700m",
+    "name": "LFM2 700M",
+    "repo": "LiquidAI/LFM2-700M-GGUF",
+    "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+    "file": "LFM2-700M-Q4_K_M.gguf",
+    "mb": 469
+  },
+  {
+    "id": "lfm2.5-1.2b",
+    "name": "LFM2.5 1.2B",
+    "repo": "LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+    "revision": "8ed288026e23958ad9dfa92d53ed773a8eee7125",
+    "file": "LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "mb": 731
+  }
+]

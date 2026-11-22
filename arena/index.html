@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Watch AI models and the GomokuBench oracle play freestyle Gomoku. Follow the Top 16 and replay every move.">
+  <meta name="referrer" content="no-referrer">
+  <title>Gomoku Arena · GomokuBench</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="#match" aria-label="Gomoku Arena home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>Gomoku<span class="brand-secondary">Arena</span></span>
+      </a>
+      <nav aria-label="Arena">
+        <a href="#match">Match</a>
+        <a href="#tournament">Top 16</a>
+        <a href="#rankings">Rankings</a>
+      </nav>
+      <a class="source-link" href="https://github.com/homerquan/GomokuBench" target="_blank" rel="noopener noreferrer">GomokuBench <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main>
+    <section id="match" class="wrap match-section" aria-labelledby="arena-title">
+      <div class="intro">
+        <div>
+          <p class="eyebrow"><span></span> THE MODEL ARENA</p>
+          <h1 id="arena-title">Five in a row<span>.</span></h1>
+          <p>Match AI models head to head on the GomokuBench board.</p>
+        </div>
+        <div class="rules-tag"><span class="rules-icon" aria-hidden="true">▦</span><div><strong>Freestyle Gomoku</strong><small>19 × 19 board</small></div></div>
+      </div>
+
+      <div class="arena-grid">
+        <article class="panel board-panel" aria-label="Match board">
+          <div class="board-header">
+            <div><p class="eyebrow">MATCH BOARD</p><h2 id="board-title">Gomoku</h2></div>
+            <span id="board-status" class="status"><i></i><span>Ready</span></span>
+          </div>
+          <div class="board-frame">
+            <canvas id="board" width="600" height="600" role="img" aria-label="Empty 19 by 19 Gomoku board"></canvas>
+          </div>
+          <div class="replay-controls" aria-label="Replay controls">
+            <button id="first-move" class="icon-button" type="button" aria-label="First position" title="First position">|‹</button>
+            <button id="prev-move" class="icon-button" type="button" aria-label="Previous move" title="Previous move">‹</button>
+            <input id="replay-position" type="range" min="0" max="0" value="0" aria-label="Replay position">
+            <button id="next-move" class="icon-button" type="button" aria-label="Next move" title="Next move">›</button>
+            <button id="last-move" class="icon-button" type="button" aria-label="Latest position" title="Latest position">›|</button>
+            <output id="move-count" for="replay-position">0 / 0</output>
+          </div>
+        </article>
+
+        <div class="match-sidebar">
+          <article class="panel setup-panel">
+            <p class="eyebrow">EXHIBITION</p>
+            <h2>Set up a match</h2>
+            <p class="panel-note">Public models run for free on your device.</p>
+            <form id="match-form">
+              <div id="player-fields"></div>
+              <div class="match-actions">
+                <button id="start-match" class="primary" type="submit">Start match <span aria-hidden="true">↗</span></button>
+                <button id="stop-match" class="secondary" type="button" hidden>Stop match</button>
+              </div>
+              <p id="form-feedback" class="feedback" role="alert" hidden></p>
+            </form>
+          </article>
+          <article class="panel progress-panel">
+            <div class="progress-header"><h2>Match progress</h2><span id="move-badge" class="count-badge">0 moves</span></div>
+            <p id="match-message" class="match-message" role="status" aria-live="polite">Choose the players and start a match.</p>
+            <progress id="load-progress" max="100" hidden aria-label="Model download progress"></progress>
+            <ol id="move-log" aria-label="Move history"></ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tournament" class="tournament-section" aria-labelledby="tournament-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> KNOCKOUT TOURNAMENT</p>
+            <h2 id="tournament-title">Top 16</h2>
+            <p id="tournament-caption">Loading published tournament…</p>
+          </div>
+          <div id="champion" class="champion" hidden></div>
+        </div>
+        <div id="bracket" class="bracket" aria-label="Top 16 bracket"></div>
+        <div id="fixture-detail" class="fixture-detail" hidden></div>
+        <p id="tournament-method" class="method"></p>
+      </div>
+    </section>
+
+    <section id="rankings" class="wrap rankings-section" aria-labelledby="rankings-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span></span> MODEL STANDINGS</p>
+          <h2 id="rankings-title">Rankings</h2>
+          <p id="ranking-caption">Loading results…</p>
+        </div>
+        <div class="ranking-tabs" role="group" aria-label="Ranking type">
+          <button id="arena-rank" type="button" aria-pressed="true">Arena Elo</button>
+          <button id="archive-rank" type="button" aria-pressed="false">Oracle benchmark</button>
+        </div>
+      </div>
+      <div class="table-scroll panel" tabindex="0" aria-label="Model standings table">
+        <table>
+          <thead id="ranking-head"></thead>
+          <tbody id="ranking-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap site-footer">
+    <span>Gomoku Arena</span>
+    <a href="https://github.com/homerquan/GomokuBench" target="_blank" rel="noopener noreferrer">Benchmark source ↗</a>
+  </footer>
+  <template id="player-template">
+    <fieldset class="player-field">
+      <legend><i class="stone-dot"></i><span class="player-color"></span></legend>
+      <select class="player-select"></select>
+      <p class="player-note"></p>
+      <div class="custom-fields" hidden>
+        <label>OpenAI-compatible HTTPS endpoint <input class="endpoint" type="url" placeholder="https://api.example.com/v1" autocomplete="off"></label>
+        <label>Model ID <input class="model-id" type="text" placeholder="model-name" autocomplete="off"></label>
+        <label>Access token <input class="token" type="password" placeholder="Optional bearer token" autocomplete="new-password"></label>
+        <p>Allow <code class="cors-origin"></code> in your API’s CORS settings. Use a temporary token and revoke it after the match.</p>
+      </div>
+    </fieldset>
+  </template>
+</body>
+</html>
