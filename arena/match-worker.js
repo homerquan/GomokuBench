@@ -1,5 +1,6 @@
 const PYODIDE = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/";
-const WLLAMA = "https://cdn.jsdelivr.net/npm/@wllama/wllama@3.13.0/esm/";
+// Wllama 4 selects the compatible WASM build on Safari, including when JSPI is available.
+const WLLAMA = "https://cdn.jsdelivr.net/npm/@wllama/wllama@4.0.0/esm/";
 const models = new Map();
 
 function progress(message, percent) {
@@ -25,13 +26,31 @@ async function loadEngine() {
   return (action, fields = {}) => JSON.parse(call(JSON.stringify({ action, ...fields })));
 }
 
+async function canCacheModels() {
+  try {
+    const storage = await navigator.storage?.getDirectory();
+    return typeof storage?.entries === "function";
+  } catch {
+    return false;
+  }
+}
+
+function temporaryModelStorage() {
+  const files = new Map();
+  return {
+    isSupported: () => true,
+    read: async (key) => files.get(key) ?? null,
+    write: async (key, stream) => { files.set(key, await new Response(stream).blob()); },
+    getSize: async (key) => files.get(key)?.size ?? -1,
+    list: async () => Array.from(files, ([key, blob]) => ({ key, size: blob.size })),
+    delete: async (key) => { files.delete(key); },
+  };
+}
+
 async function loadModel(player) {
   if (models.has(player.id)) return models.get(player.id);
   progress(`Loading ${player.name} · ${player.mb} MB on first use…`, 0);
-  const { Wllama } = await import(WLLAMA + "index.js");
-  const model = new Wllama({ default: WLLAMA + "wasm/wllama.wasm" }, {
-    suppressNativeLog: true, allowOffline: true,
-  });
+  const { CacheManager, Wllama } = await import(WLLAMA + "index.js");
   const url = `https://huggingface.co/${player.repo}/resolve/${player.revision}/${encodeURIComponent(player.file)}`;
   const options = {
     n_ctx: 2048,
@@ -42,9 +61,28 @@ async function loadModel(player) {
       progress(`Loading ${player.name}${percent === undefined ? "…" : ` · ${percent}%`}`, percent);
     },
   };
+  function createModel(persistent) {
+    const cacheManager = persistent ? undefined : new CacheManager([temporaryModelStorage()]);
+    return new Wllama({ default: WLLAMA + "wasm/wllama.wasm" }, {
+      cacheManager, suppressNativeLog: true, allowOffline: true,
+    });
+  }
+  const persistent = await canCacheModels();
+  let model = createModel(persistent);
   try {
-    await model.loadModelFromUrl(url, options);
-  } catch {
+    try {
+      await model.loadModelFromUrl(url, options);
+    } catch (error) {
+      if (!persistent || !(error instanceof DOMException)) throw error;
+      model = createModel(false);
+      await model.loadModelFromUrl(url, options);
+    }
+  } catch (error) {
+    const status = String(error?.message ?? error).match(/\bHTTP (\d{3})\b/)?.[1];
+    if (status === "429") {
+      throw new Error("Hugging Face rate-limited the model download. Try again in a few minutes.");
+    }
+    if (status) throw new Error(`Hugging Face returned HTTP ${status} while downloading ${player.name}.`);
     throw new Error(`Could not load ${player.name}. Check your connection or try a smaller model.`);
   }
   models.set(player.id, model);

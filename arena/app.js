@@ -207,7 +207,7 @@ function startMatch(event) {
     }
   };
   current.onerror = () => {
-    if (worker === current) endMatch("Match ended", "Could not start the game engine. Refresh or try a current browser.", "error");
+    if (worker === current) endMatch("Match ended", "The browser stopped the match engine. Start a new match to retry.", "error");
   };
   current.postMessage(players);
 }
